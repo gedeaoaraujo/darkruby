@@ -1,4 +1,4 @@
-import 'package:darkruby/data_base.dart';
+import 'package:darkruby/memory_database.dart';
 import 'package:darkruby/model/note.dart';
 
 class NotesRepository {
