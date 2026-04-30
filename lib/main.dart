@@ -5,15 +5,17 @@ void main() {
   runApp(const App());
 }
 
+const String _appName = 'Dark Ruby';
+
 class App extends StatelessWidget {
   const App({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Dark Ruby',
+      title: _appName,
       debugShowCheckedModeBanner: false,
-      home: const HomePage(title: 'Dark Ruby'),
+      home: const HomePage(title: _appName),
       theme: ThemeData(
         colorScheme: .dark(
           primary: Colors.redAccent,
