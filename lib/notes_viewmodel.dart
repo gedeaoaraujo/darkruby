@@ -1,16 +1,5 @@
+import 'package:darkruby/model/note.dart';
 import 'package:flutter_riverpod/legacy.dart';
-
-class Note {
-  final String title;
-  final String date;
-  final String text;
-
-  Note({
-    required this.title, 
-    required this.date, 
-    required this.text
-  });
-}
 
 class NoteState {
   final List<Note> notes;
