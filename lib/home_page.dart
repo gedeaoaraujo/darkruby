@@ -1,13 +1,8 @@
+import 'package:darkruby/edit_page.dart';
+import 'package:darkruby/injections.dart';
 import 'package:darkruby/list_item.dart';
-import 'package:darkruby/notes_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_riverpod/legacy.dart';
-
-final notesViewModel = 
-  StateNotifierProvider<NotesViewmodel, NoteState>(
-    (ref) => NotesViewmodel()
-);
 
 class HomePage extends ConsumerWidget {
   final String title;
