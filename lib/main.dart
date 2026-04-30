@@ -22,7 +22,6 @@ class App extends StatelessWidget {
           inversePrimary: Colors.black,
         ),
       ),
-      // theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.black12)),
     );
   }
 }
