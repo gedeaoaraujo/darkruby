@@ -1,7 +1,7 @@
 import 'package:darkruby/model/note.dart';
 
 class InMemoryDataBase {
-  final List<Note> _notes = .empty();
+  final List<Note> _notes = .empty(growable: true);
   
   InMemoryDataBase() {
     _notes.addAll(genItems());
