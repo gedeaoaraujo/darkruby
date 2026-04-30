@@ -29,8 +29,8 @@ class HomePage extends ConsumerWidget {
         child: Builder(
           builder: (_) => ListView.builder(
             itemCount: state.notes.length,
-            itemBuilder: (_, i){
-              final item = state.notes[i];
+            itemBuilder: (_, index){
+              final item = state.notes[index];
               return ListItem(
                 title: item.title,
                 date: item.date,
