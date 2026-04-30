@@ -1,5 +1,6 @@
 import 'package:darkruby/model/note.dart';
 import 'package:flutter_riverpod/legacy.dart';
+import 'package:darkruby/notes_repository.dart';
 
 class NoteState {
   final List<Note> notes;
@@ -13,19 +14,12 @@ class NoteState {
 }
 
 class NotesViewmodel extends StateNotifier<NoteState> {
-  NotesViewmodel(): super(NoteState()){
-    load();
-  }
-
-  List<Note> genItems() => List.generate(100, (i){
-    return Note(
-      date: '22/05/1998',
-      title: 'New title ${++i}',
-      text: List.generate(255, (_) => 'x').join());
-  });
+  final _repository = NotesRepository();
+  NotesViewmodel(): super(NoteState()){ load(); }
   
-  Future<void> load() async {
-    state = state.copyWith(notes: genItems());
+  void load() {
+    final result = _repository.getAllNotes();
+    state = state.copyWith(notes: result);
   }
 
 }
