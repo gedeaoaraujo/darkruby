@@ -1,11 +1,13 @@
 class Note {
+  final int id;
   final String title;
   final String date;
   final String text;
 
-  Note({
-    required this.title, 
-    required this.date, 
-    required this.text
+  const Note({
+    this.id = 0,
+    this.title = '', 
+    this.date = '', 
+    this.text = ''
   });
 }
