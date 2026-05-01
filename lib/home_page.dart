@@ -39,7 +39,7 @@ class HomePage extends ConsumerWidget {
         child: const Icon(Icons.add, color: Colors.white,),
         onPressed: (){
           Navigator.push(context, MaterialPageRoute<void>(
-            builder: (context) => const EditPage(noteId: 0,),
+            builder: (context) => EditPage(),
           ));
         }
       ),
