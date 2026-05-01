@@ -25,7 +25,7 @@ class ListItem extends StatelessWidget {
           children: [
             Text(note.title, textAlign: .start),
             Text(note.date),
-            Wrap(children: [Text(note.text)]),
+            Wrap(children: [Text(note.text, maxLines: 5,overflow: .ellipsis)]),
           ],
         ),
       ),
