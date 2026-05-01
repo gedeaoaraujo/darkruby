@@ -19,21 +19,14 @@ class HomePage extends ConsumerWidget {
         backgroundColor: theme.colorScheme.inversePrimary,
         title: Text(title),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Builder(
-          builder: (_) => ListView.builder(
-            itemCount: state.notes.length,
-            itemBuilder: (_, index){
-              final item = state.notes[index];
-              return ListItem(
-                title: item.title,
-                date: item.date,
-                text: item.text,
-              );
-            }
-          ) 
-        ),
+      body: Builder(
+        builder: (_) => ListView.builder(
+          itemCount: state.notes.length,
+          itemBuilder: (_, index){
+            final item = state.notes[index];
+            return ListItem(note: item);
+          }
+        ) 
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add, color: Colors.white,),

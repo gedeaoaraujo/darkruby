@@ -1,28 +1,33 @@
+import 'package:darkruby/model/note.dart';
 import 'package:flutter/material.dart';
+import 'package:darkruby/edit_page.dart';
 
 class ListItem extends StatelessWidget {
-  final String title;
-  final String date;
-  final String text;
+  final Note note;
 
   const ListItem({
     super.key,
-    required this.title, 
-    required this.date, 
-    required this.text
+    required this.note
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: .start,
-        children: [
-          Text(title, textAlign: .start),
-          Text(date),
-          Wrap(children: [Text(text)]),
-        ],
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute<void>(
+            builder: (context) => EditPage(note: note,),
+          ));
+        },
+        child: Column(
+          crossAxisAlignment: .start,
+          children: [
+            Text(note.title, textAlign: .start),
+            Text(note.date),
+            Wrap(children: [Text(note.text)]),
+          ],
+        ),
       ),
     );
   }
