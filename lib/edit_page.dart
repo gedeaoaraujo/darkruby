@@ -34,7 +34,15 @@ class EditPage extends ConsumerWidget {
 
     return Scaffold(
       backgroundColor: theme.colorScheme.inversePrimary,
-      appBar: AppBar(title: Text(_pageTitle)),
+      appBar: AppBar(
+        title: Text(_pageTitle),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.edit),
+            onPressed: (){}
+          )
+        ],
+      ),
       body: Padding(
         padding: const .all(16.0),
         child: Expanded(
