@@ -33,7 +33,10 @@ class HomePage extends ConsumerWidget {
         child: Icon(Icons.add, color: scheme.onSecondary),
         onPressed: (){
           Navigator.push(context, MaterialPageRoute<void>(
-            builder: (context) => EditPage(viewMode: false),
+            builder: (context) => EditPage(
+              pageTitle: 'Create Note', 
+              viewMode: false
+            ),
           ));
         }
       ),

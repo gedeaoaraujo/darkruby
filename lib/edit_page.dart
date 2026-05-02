@@ -5,11 +5,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class EditPage extends ConsumerWidget {
   final Note note;
   final bool viewMode;
-  final _pageTitle = 'Edit Page';
+  final String pageTitle;
   
   const EditPage({
     super.key,
     this.viewMode = true, 
+    this.pageTitle = 'Edit Page',
     this.note = const Note()
   });
 
@@ -35,7 +36,7 @@ class EditPage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: scheme.primary,
-        title: Text(_pageTitle),
+        title: Text(pageTitle),
         actions: [
           IconButton(
             icon: Icon(Icons.edit),
