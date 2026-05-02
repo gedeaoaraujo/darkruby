@@ -34,7 +34,7 @@ class HomePage extends ConsumerWidget {
         onPressed: (){
           Navigator.push(context, MaterialPageRoute<void>(
             builder: (context) => NotePage(
-              pageTitle: 'Create Note', 
+              pageType: PageType.create, 
               viewMode: false
             ),
           ));

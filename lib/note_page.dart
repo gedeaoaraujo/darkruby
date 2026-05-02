@@ -2,20 +2,20 @@ import 'package:darkruby/model/note.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-enum NotePageType {
+enum PageType {
   view, edit, create
 }
 
 class NotePage extends ConsumerWidget {
   final Note note;
   final bool viewMode;
-  final String pageTitle;
+  final PageType pageType;
   
   const NotePage({
     super.key,
     this.viewMode = true, 
-    this.pageTitle = 'Edit Page',
-    this.note = const Note()
+    this.note = const Note(),
+    this.pageType = PageType.edit,
   });
 
   TextEditingController get titleController => .fromValue(.new(
@@ -32,6 +32,12 @@ class NotePage extends ConsumerWidget {
     text: note.text,
     selection: .collapsed(offset: note.text.length),
   ));
+
+  String get pageTitle => switch (pageType) {
+    PageType.create => 'Create Note',
+    PageType.view => 'View Note',
+    PageType.edit => 'Edit Note',
+  };
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
