@@ -7,11 +7,11 @@ class InMemoryDataBase {
     _notes.addAll(genItems());
   }
 
-  List<Note> genItems() => List.generate(100, (i){
+  List<Note> genItems() => List.generate(3, (i){
     return Note(
       date: '22/05/1998',
       title: 'New title ${++i}',
-      text: List.generate(255, (_) => 'x').join());
+      text: List.generate(999, (_) => 'xxxxxx').join());
   });
 
   List<Note> getAllNotes() {

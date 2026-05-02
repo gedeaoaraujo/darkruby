@@ -33,7 +33,6 @@ class EditPage extends ConsumerWidget {
     final scheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      backgroundColor: scheme.inversePrimary,
       appBar: AppBar(
         backgroundColor: scheme.primary,
         title: Text(_pageTitle),
