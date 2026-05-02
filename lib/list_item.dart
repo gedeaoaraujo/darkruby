@@ -12,8 +12,9 @@ class ListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(5.0),
       child: ElevatedButton(
         onPressed: () {
           Navigator.push(context, MaterialPageRoute<void>(
@@ -23,9 +24,23 @@ class ListItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: .start,
           children: [
-            Text(note.title, textAlign: .start),
-            Text(note.date),
-            Wrap(children: [Text(note.text, maxLines: 5,overflow: .ellipsis)]),
+            Text(
+              note.title, 
+              textAlign: .start,
+              style: .new(fontSize: 16),
+            ),
+            Text(
+              note.date, 
+              style: .new(color: scheme.onSecondary),
+            ),
+            Wrap(children: [
+              Text(
+                note.text, 
+                maxLines: 5,
+                overflow: .ellipsis,
+                style: .new(color: scheme.onSecondary),
+              )
+            ]),
           ],
         ),
       ),

@@ -19,8 +19,10 @@ class App extends StatelessWidget {
       home: const HomePage(title: _appName),
       theme: ThemeData(
         colorScheme: .dark(
-          primary: Colors.redAccent,
-          inversePrimary: Colors.black,
+          primary: Colors.red.shade900,
+          onPrimary: Colors.black,
+          secondary: Colors.black87,
+          onSecondary: Colors.white70,
         ),
       ),
     );

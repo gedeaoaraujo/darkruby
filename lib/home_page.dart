@@ -11,12 +11,12 @@ class HomePage extends ConsumerWidget {
   
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
+    final scheme = Theme.of(context).colorScheme;
     final state = ref.watch(notesViewModel);
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: theme.colorScheme.inversePrimary,
+        backgroundColor: scheme.primary,
         title: Text(title),
       ),
       body: Builder(
@@ -29,7 +29,8 @@ class HomePage extends ConsumerWidget {
         ) 
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add, color: Colors.white,),
+        backgroundColor: scheme.secondary,
+        child: Icon(Icons.add, color: scheme.onSecondary),
         onPressed: (){
           Navigator.push(context, MaterialPageRoute<void>(
             builder: (context) => EditPage(viewMode: false),

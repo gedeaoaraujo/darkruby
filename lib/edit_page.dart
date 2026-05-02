@@ -30,11 +30,12 @@ class EditPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
+    final scheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      backgroundColor: theme.colorScheme.inversePrimary,
+      backgroundColor: scheme.inversePrimary,
       appBar: AppBar(
+        backgroundColor: scheme.primary,
         title: Text(_pageTitle),
         actions: [
           IconButton(
