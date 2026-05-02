@@ -2,12 +2,16 @@ import 'package:darkruby/model/note.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class EditPage extends ConsumerWidget {
+enum NotePageType {
+  view, edit, create
+}
+
+class NotePage extends ConsumerWidget {
   final Note note;
   final bool viewMode;
   final String pageTitle;
   
-  const EditPage({
+  const NotePage({
     super.key,
     this.viewMode = true, 
     this.pageTitle = 'Edit Page',

@@ -1,6 +1,6 @@
 import 'package:darkruby/model/note.dart';
 import 'package:flutter/material.dart';
-import 'package:darkruby/edit_page.dart';
+import 'package:darkruby/note_page.dart';
 
 class ListItem extends StatelessWidget {
   final Note note;
@@ -18,7 +18,7 @@ class ListItem extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {
           Navigator.push(context, MaterialPageRoute<void>(
-            builder: (context) => EditPage(note: note,),
+            builder: (context) => NotePage(note: note),
           ));
         },
         child: Column(

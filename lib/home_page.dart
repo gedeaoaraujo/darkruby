@@ -1,4 +1,4 @@
-import 'package:darkruby/edit_page.dart';
+import 'package:darkruby/note_page.dart';
 import 'package:darkruby/injections.dart';
 import 'package:darkruby/list_item.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +33,7 @@ class HomePage extends ConsumerWidget {
         child: Icon(Icons.add, color: scheme.onSecondary),
         onPressed: (){
           Navigator.push(context, MaterialPageRoute<void>(
-            builder: (context) => EditPage(
+            builder: (context) => NotePage(
               pageTitle: 'Create Note', 
               viewMode: false
             ),
