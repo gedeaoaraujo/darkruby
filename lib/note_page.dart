@@ -42,10 +42,9 @@ class NotePage extends ConsumerWidget {
       selection: .collapsed(offset: selecNote.text.length),
     ));
 
-    final page = switch (state.pageType) {
-      PageType.create => (title: 'Create Note', read: false),
-      PageType.view => (title: 'View Note', read: true),
-      PageType.edit => (title: 'Edit Note', read: false),
+    final page = switch (state.readOnly) {
+      true => (title: 'View Note', icon: Icons.edit),
+      false => (title: 'Edit Note', icon: Icons.remove_red_eye),
     };
 
     return Scaffold(
@@ -54,7 +53,7 @@ class NotePage extends ConsumerWidget {
         title: Text(page.title),
         actions: [
           IconButton(
-            icon: Icon(Icons.edit),
+            icon: Icon(page.icon),
             onPressed: (){
               viewModel.onAction(ToggleReadOnly());
             }
