@@ -9,6 +9,7 @@ class InMemoryDataBase {
 
   List<Note> genItems() => List.generate(3, (i){
     return Note(
+      id: ++i,
       date: '22/05/1998',
       title: 'New title ${++i}',
       text: List.generate(999, (_) => 'xxxxxx').join());
