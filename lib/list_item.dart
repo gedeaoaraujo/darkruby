@@ -20,7 +20,7 @@ class ListItem extends StatelessWidget {
           Navigator.push(context, MaterialPageRoute<void>(
             builder: (context) => NotePage(
               pageType: PageType.view,
-              note: note,
+              noteId: note.id,
             ),
           ));
         },

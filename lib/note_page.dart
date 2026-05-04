@@ -1,4 +1,6 @@
+import 'package:darkruby/injections.dart';
 import 'package:darkruby/model/note.dart';
+import 'package:darkruby/note_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -7,50 +9,55 @@ enum PageType {
 }
 
 class NotePage extends ConsumerWidget {
-  final Note note;
-  final bool viewMode;
+  final int noteId;
   final PageType pageType;
   
   const NotePage({
     super.key,
-    this.viewMode = true, 
-    this.note = const Note(),
-    this.pageType = PageType.edit,
+    this.noteId = -1,
+    this.pageType = PageType.edit
   });
-
-  TextEditingController get titleController => .fromValue(.new(
-    text: note.title,
-    selection: .collapsed(offset: note.title.length),
-  ));
-
-  TextEditingController get dateController => .fromValue(.new(
-    text: note.date,
-    selection: .collapsed(offset: note.date.length),
-  ));
-
-  TextEditingController get textController => .fromValue(.new(
-    text: note.text,
-    selection: .collapsed(offset: note.text.length),
-  ));
-
-  String get pageTitle => switch (pageType) {
-    PageType.create => 'Create Note',
-    PageType.view => 'View Note',
-    PageType.edit => 'Edit Note',
-  };
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final scheme = Theme.of(context).colorScheme;
+    final state = ref.watch(notesViewModel);
+    final viewModel = ref.read(notesViewModel.notifier);
+    final selecNote = state.notes.firstWhere(
+      (e) => e.id == noteId, orElse: () => Note()
+    );
+
+    final titleController = TextEditingController.fromValue(.new(
+      text: selecNote.title,
+      selection: .collapsed(offset: selecNote.title.length),
+    ));
+
+    final dateController = TextEditingController.fromValue(.new(
+      text: selecNote.date,
+      selection: .collapsed(offset: selecNote.date.length),
+    ));
+
+    final textController = TextEditingController.fromValue(.new(
+      text: selecNote.text,
+      selection: .collapsed(offset: selecNote.text.length),
+    ));
+
+    final page = switch (state.pageType) {
+      PageType.create => (title: 'Create Note', read: false),
+      PageType.view => (title: 'View Note', read: true),
+      PageType.edit => (title: 'Edit Note', read: false),
+    };
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: scheme.primary,
-        title: Text(pageTitle),
+        title: Text(page.title),
         actions: [
           IconButton(
             icon: Icon(Icons.edit),
-            onPressed: (){}
+            onPressed: (){
+              viewModel.onAction(ToggleReadOnly());
+            }
           )
         ],
       ),
@@ -60,14 +67,14 @@ class NotePage extends ConsumerWidget {
           child: Column(
             children: [
               TextField(
-                readOnly: viewMode,
+                readOnly: state.readOnly,
                 controller: titleController,
                 decoration: .new(
                   border: .none,
                   labelText: 'Título',
                 )),
               TextField(
-                readOnly: viewMode,
+                readOnly: state.readOnly,
                 controller: dateController,
                 decoration: .new(
                   border: .none,
@@ -77,7 +84,7 @@ class NotePage extends ConsumerWidget {
               Expanded(
                 child: TextField(
                   maxLines: null,
-                  readOnly: viewMode,
+                  readOnly: state.readOnly,
                   controller: textController,
                   decoration: .new(
                     border: .none,
