@@ -27,6 +27,8 @@ class NotesViewmodel extends StateNotifier<NoteState> {
       case SaveNote():
         _repository.createNewNote(state.newNote!);
         onAction(LoadNotes());
+      case DeleteNote(:final noteId):
+        _repository.deleteNoteById(noteId);
     }
   }
 

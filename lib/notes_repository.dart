@@ -12,4 +12,8 @@ class NotesRepository {
   void createNewNote(Note note){
     _database.createNewNote(note);
   }
+
+  void deleteNoteById(int noteId) {
+    _database.deleteNoteById(noteId);
+  }
 }

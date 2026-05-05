@@ -27,4 +27,8 @@ class InMemoryDataBase {
     );
     _notes.add(newNote);
   }
+
+  void deleteNoteById(int noteId) {
+    _notes.removeWhere((e) => e.id == noteId);
+  }
 }

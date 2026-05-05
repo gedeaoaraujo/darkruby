@@ -51,6 +51,13 @@ class NotePage extends ConsumerWidget {
         title: Text(page.title),
         actions: [
           IconButton(
+            icon: Icon(Icons.delete),
+            onPressed: (){
+              viewModel.onAction(DeleteNote(noteId: noteId));
+              Navigator.pop(context);
+            }
+          ),
+          IconButton(
             icon: Icon(page.icon),
             onPressed: (){
               viewModel.onAction(ToggleReadOnly());
