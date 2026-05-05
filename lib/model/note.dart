@@ -10,4 +10,16 @@ class Note {
     this.date = '', 
     this.text = ''
   });
+
+  Note copyWith({
+    int? id,
+    String? title,
+    String? date,
+    String? text,
+  }) => Note(
+    id: id ?? this.id,
+    title: title ?? this.title,
+    date: date ?? this.date,
+    text: text ?? this.text
+  );
 }
