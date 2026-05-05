@@ -10,12 +10,10 @@ enum PageType {
 
 class NotePage extends ConsumerWidget {
   final int noteId;
-  final PageType pageType;
   
   const NotePage({
     super.key,
     this.noteId = -1,
-    this.pageType = PageType.edit
   });
 
   @override

@@ -18,10 +18,7 @@ class ListItem extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {
           Navigator.push(context, MaterialPageRoute<void>(
-            builder: (context) => NotePage(
-              pageType: PageType.view,
-              noteId: note.id,
-            ),
+            builder: (context) => NotePage(noteId: note.id)
           ));
         },
         child: Column(
