@@ -11,11 +11,20 @@ class InMemoryDataBase {
     return Note(
       id: ++i,
       date: '22/05/1998',
-      title: 'New title ${++i}',
+      title: 'New title $i',
       text: List.generate(999, (_) => 'xxxxxx').join());
   });
 
   List<Note> getAllNotes() {
     return _notes;
+  }
+
+  void createNewNote(Note note) {
+    final newId = _notes.length + 1;
+    final newNote = Note(
+      id: newId, title: note.title, 
+      date: note.date, text: note.text
+    );
+    _notes.add(newNote);
   }
 }

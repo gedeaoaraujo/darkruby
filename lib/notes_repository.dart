@@ -8,4 +8,8 @@ class NotesRepository {
   List<Note> getAllNotes() {
     return _database.getAllNotes();
   }
+
+  void createNewNote(Note note){
+    _database.createNewNote(note);
+  }
 }

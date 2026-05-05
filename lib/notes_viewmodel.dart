@@ -1,3 +1,4 @@
+import 'package:darkruby/model/note.dart';
 import 'package:darkruby/note_state.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:darkruby/notes_repository.dart';
@@ -10,13 +11,26 @@ class NotesViewmodel extends StateNotifier<NoteState> {
   }
 
   void onAction(NoteIntent intent) {
-    state = switch (intent) {
-      ToggleReadOnly() => state.copyWith(
-        readOnly: !state.readOnly
-      ),
-      LoadNotes() => state.copyWith(
-        notes: _repository.getAllNotes()
-      )
+    switch (intent) {
+      case ToggleReadOnly():
+        state = state.copyWith(readOnly: !state.readOnly);
+      break;
+      case CreateNote():
+        state = state.copyWith(newNote: Note());
+      break;
+      case UpdateNote(:final title, :final date, :final text):
+        final newNote = state.newNote?.copyWith(
+          title: title, date: date, text: text
+        );
+        state = state.copyWith(newNote: newNote);
+      break;
+      case LoadNotes():
+        state = state.copyWith(notes: _repository.getAllNotes());
+      break;
+      case SaveNote():
+        _repository.createNewNote(state.newNote!);
+        onAction(LoadNotes());
+      break;
     };
   }
 
