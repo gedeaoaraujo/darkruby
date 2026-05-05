@@ -14,24 +14,19 @@ class NotesViewmodel extends StateNotifier<NoteState> {
     switch (intent) {
       case ToggleReadOnly():
         state = state.copyWith(readOnly: !state.readOnly);
-      break;
       case CreateNote():
         state = state.copyWith(newNote: Note());
-      break;
       case UpdateNote(:final title, :final date, :final text):
         final newNote = state.newNote?.copyWith(
           title: title, date: date, text: text
         );
         state = state.copyWith(newNote: newNote);
-      break;
       case LoadNotes():
         state = state.copyWith(notes: _repository.getAllNotes());
-      break;
       case SaveNote():
         _repository.createNewNote(state.newNote!);
         onAction(LoadNotes());
-      break;
-    };
+    }
   }
 
 }
