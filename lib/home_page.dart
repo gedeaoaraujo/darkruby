@@ -1,7 +1,7 @@
 import 'package:darkruby/create_page.dart';
 import 'package:darkruby/injections.dart';
 import 'package:darkruby/list_item.dart';
-import 'package:darkruby/note_state.dart';
+import 'package:darkruby/note_intent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

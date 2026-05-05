@@ -1,4 +1,5 @@
 import 'package:darkruby/model/note.dart';
+import 'package:darkruby/note_intent.dart';
 import 'package:darkruby/note_state.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:darkruby/notes_repository.dart';
