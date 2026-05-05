@@ -1,33 +1,47 @@
 import 'package:darkruby/injections.dart';
 import 'package:darkruby/note_intent.dart';
+import 'package:darkruby/note_state.dart';
+import 'package:darkruby/notes_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CreatePage extends ConsumerWidget {
+class CreatePage extends ConsumerStatefulWidget {
   const CreatePage({super.key});
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _CreatePage();
+}
+
+class _CreatePage extends ConsumerState<CreatePage> {
+
+  late final NoteState state;
+  late final NotesViewmodel viewModel;
+  late final TextEditingController titleController;
+  late final TextEditingController dateController;
+  late final TextEditingController textController;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  void initState() {
+    super.initState();
+    state = ref.read(notesViewModel);
+    viewModel = ref.read(notesViewModel.notifier);
+    titleController = TextEditingController(text: state.newNote?.title ?? '');
+    dateController = TextEditingController(text: state.newNote?.date ?? '');
+    textController = TextEditingController(text: state.newNote?.text ?? '');
+  }
+
+  @override
+  void dispose() {
+    titleController.dispose();
+    dateController.dispose();
+    textController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
-    final state = ref.watch(notesViewModel);
-    final viewModel = ref.read(notesViewModel.notifier);
 
-    final titleController = TextEditingController.fromValue(.new(
-      text: state.newNote?.title ?? '',
-      selection: .collapsed(offset: state.newNote?.title.length ?? 0),
-    ));
-
-    final dateController = TextEditingController.fromValue(.new(
-      text: state.newNote?.date ?? '',
-      selection: .collapsed(offset: state.newNote?.date.length ?? 0),
-    ));
-
-    final textController = TextEditingController.fromValue(.new(
-      text: state.newNote?.text ?? '',
-      selection: .collapsed(offset: state.newNote?.text.length ?? 0),
-    ));
-
-    return Scaffold(
+   return Scaffold(
       appBar: AppBar(
         backgroundColor: scheme.primary,
         title: Text('Create Note'),
