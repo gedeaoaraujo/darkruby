@@ -13,31 +13,40 @@ class ListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
-    return Padding(
-      padding: const EdgeInsets.all(5.0),
-      child: ElevatedButton(
-        onPressed: () => goToNotePage(),
-        child: Column(
-          crossAxisAlignment: .start,
-          children: [
-            Text(
-              note.title, 
-              textAlign: .start,
-              style: .new(fontSize: 16),
-            ),
-            Text(
-              note.date, 
-              style: .new(color: scheme.onSecondary),
-            ),
-            Wrap(children: [
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        minimumSize: const .new(.infinity, 0),
+        shape: RoundedRectangleBorder(borderRadius: .circular(8))
+      ),
+      onPressed: () => goToNotePage(),
+      child: SizedBox(
+        width: .infinity,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: Column(
+            spacing: 2,
+            mainAxisSize: .max,
+            crossAxisAlignment: .start,
+            children: [
               Text(
-                note.text, 
-                maxLines: 5,
-                overflow: .ellipsis,
+                note.title, 
+                textAlign: .start,
+                style: .new(fontSize: 16),
+              ),
+              Text(
+                note.date, 
                 style: .new(color: scheme.onSecondary),
-              )
-            ]),
-          ],
+              ),
+              Wrap(children: [
+                Text(
+                  note.text,
+                  maxLines: 3,
+                  overflow: .ellipsis,
+                  style: .new(color: scheme.onSecondary),
+                )
+              ]),
+            ],
+          ),
         ),
       ),
     );
