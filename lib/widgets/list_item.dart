@@ -28,14 +28,26 @@ class ListItem extends StatelessWidget {
             mainAxisSize: .max,
             crossAxisAlignment: .start,
             children: [
-              Text(
-                note.title, 
-                textAlign: .start,
-                style: .new(fontSize: 16),
+              Row(
+                spacing: 8,
+                children: [
+                  Icon(Icons.library_books),
+                  Text(
+                    note.title, 
+                    textAlign: .start,
+                    style: .new(fontSize: 16),
+                  ),
+                ],
               ),
-              Text(
-                note.date, 
-                style: .new(color: scheme.onSecondary),
+              Row(
+                spacing: 8,
+                children: [
+                  Icon(Icons.access_time_filled),
+                  Text(
+                    note.date, 
+                    style: .new(color: scheme.onSecondary),
+                  ),
+                ],
               ),
               Wrap(children: [
                 Text(
