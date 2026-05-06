@@ -3,10 +3,6 @@ import 'package:darkruby/model/note.dart';
 import 'package:darkruby/note_intent.dart';
 import 'package:darkruby/notes_viewmodel.dart';
 
-enum PageType {
-  view, edit, create
-}
-
 class NotePage extends StatelessWidget {
 
   late final int noteId;
