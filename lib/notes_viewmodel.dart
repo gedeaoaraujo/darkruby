@@ -31,6 +31,9 @@ class NotesViewmodel extends ChangeNotifier {
         _repository.createNewNote(state.newNote!);
       case DeleteNote(:final noteId):
         _repository.deleteNoteById(noteId);
+      case SelectNote(:final noteId):
+        final note = state.notes.firstWhere((e) => e.id == noteId);
+        _state = state.copyWith(newNote: note);
     }
     notifyListeners();
   }

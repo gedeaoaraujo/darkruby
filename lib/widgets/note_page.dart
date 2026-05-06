@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:darkruby/model/note.dart';
 import 'package:darkruby/note_intent.dart';
 import 'package:darkruby/notes_viewmodel.dart';
 
@@ -12,13 +11,10 @@ class NotePage extends StatelessWidget {
   late final TextEditingController textController;
   
   NotePage({super.key, required this.noteId, required this.viewModel}){
-    final selecNote = viewModel.state.notes.firstWhere(
-      (e) => e.id == noteId, orElse: () => Note()
-    );
-
-    titleController = .new(text: selecNote.title);
-    dateController = .new(text: selecNote.date);
-    textController = .new(text: selecNote.text);
+    viewModel.onAction(SelectNote(noteId: noteId));
+    titleController = .new(text: viewModel.state.newNote?.title);
+    dateController = .new(text: viewModel.state.newNote?.date);
+    textController = .new(text: viewModel.state.newNote?.text);
   }
 
   @override
@@ -61,6 +57,9 @@ class NotePage extends StatelessWidget {
                   TextField(
                     readOnly: viewModel.state.readOnly,
                     controller: titleController,
+                    onChanged: (value) {
+                      viewModel.onAction(UpdateNote(title: value));
+                    },
                     decoration: .new(
                       border: .none,
                       labelText: 'Título',
@@ -68,6 +67,9 @@ class NotePage extends StatelessWidget {
                   TextField(
                     readOnly: viewModel.state.readOnly,
                     controller: dateController,
+                    onChanged: (value) {
+                      viewModel.onAction(UpdateNote(date: value));
+                    },
                     decoration: .new(
                       border: .none,
                       labelText: 'Data',
@@ -78,6 +80,9 @@ class NotePage extends StatelessWidget {
                       maxLines: null,
                       readOnly: viewModel.state.readOnly,
                       controller: textController,
+                      onChanged: (value) {
+                        viewModel.onAction(UpdateNote(text: value));
+                      },
                       decoration: .new(
                         border: .none,
                         labelText: 'Texto',
@@ -88,6 +93,16 @@ class NotePage extends StatelessWidget {
               ),
             ),
           ),
+          floatingActionButton:
+            viewModel.state.readOnly == true ? null :
+              FloatingActionButton(
+                onPressed: (){
+                  viewModel.onAction(SaveNote());
+                  viewModel.onAction(ToggleReadOnly());
+                },
+                backgroundColor: scheme.primary,
+                child: Icon(Icons.check, color: scheme.onSecondary)
+              )
         );
       }
     );
