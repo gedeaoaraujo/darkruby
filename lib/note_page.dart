@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:darkruby/injections.dart';
 import 'package:darkruby/model/note.dart';
 import 'package:darkruby/note_intent.dart';
-import 'package:darkruby/note_state.dart';
 import 'package:darkruby/notes_viewmodel.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -20,8 +19,6 @@ class NotePage extends ConsumerStatefulWidget {
 
 class _NotePage extends ConsumerState<NotePage> {
 
-  late final ({IconData icon, String title}) page;
-  late final NoteState state;
   late final NotesViewmodel viewModel;
   late TextEditingController titleController;
   late TextEditingController dateController;
@@ -31,13 +28,8 @@ class _NotePage extends ConsumerState<NotePage> {
   void initState() {
     super.initState();
     viewModel = ref.read(notesViewModel.notifier);
-    state = ref.read(notesViewModel);
-
-    page = switch (state.readOnly) {
-      true => (title: 'View Note', icon: Icons.edit),
-      false => (title: 'Edit Note', icon: Icons.remove_red_eye),
-    };
-
+    
+    final state = ref.read(notesViewModel);
     final selecNote = state.notes.firstWhere(
       (e) => e.id == widget.noteId, orElse: () => Note()
     );
@@ -58,6 +50,11 @@ class _NotePage extends ConsumerState<NotePage> {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final state = ref.watch(notesViewModel);
+    final page = switch (state.readOnly) {
+      true => (title: 'View Note', icon: Icons.edit),
+      false => (title: 'Edit Note', icon: Icons.remove_red_eye),
+    };
     return Scaffold(
       appBar: AppBar(
         backgroundColor: scheme.primary,
