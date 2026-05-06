@@ -12,9 +12,9 @@ class NotePage extends StatelessWidget {
   
   NotePage({super.key, required this.noteId, required this.viewModel}){
     viewModel.onAction(SelectNote(noteId: noteId));
-    titleController = .new(text: viewModel.state.newNote?.title);
-    dateController = .new(text: viewModel.state.newNote?.date);
-    textController = .new(text: viewModel.state.newNote?.text);
+    titleController = .new(text: viewModel.state.newNote?.title ?? '');
+    dateController = .new(text: viewModel.state.newNote?.date ?? '');
+    textController = .new(text: viewModel.state.newNote?.text ?? '');
   }
 
   @override
