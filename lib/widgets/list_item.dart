@@ -5,11 +5,10 @@ class ListItem extends StatelessWidget {
   final Note note;
   final void Function() goToNotePage;
 
-  const ListItem({
-    super.key,
-    required this.note,
-    required this.goToNotePage
-  });
+  const ListItem(
+    this.goToNotePage,
+    {super.key, required this.note}
+  );
 
   @override
   Widget build(BuildContext context) {

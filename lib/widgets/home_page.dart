@@ -1,3 +1,4 @@
+import 'package:darkruby/model/note.dart';
 import 'package:darkruby/widgets/create_page.dart';
 import 'package:darkruby/widgets/list_item.dart';
 import 'package:darkruby/note_intent.dart';
@@ -19,6 +20,22 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
 
+    void goToNotePage(Note item) {
+      Navigator.push(context, MaterialPageRoute<void>(
+        builder: (context) => NotePage(
+          noteId: item.id,
+          viewModel: viewModel
+        )
+      ));
+    }
+
+    void goToCreatePage(){
+      viewModel.onAction(CreateNote());
+      Navigator.push(context, MaterialPageRoute<void>(
+        builder: (context) => CreatePage(viewModel: viewModel),
+      ));
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: scheme.primary,
@@ -32,28 +49,17 @@ class HomePage extends StatelessWidget {
             itemBuilder: (_, index){
               final item = viewModel.state.notes[index];
               return ListItem(
-                key: ValueKey('$index'), note: item, goToNotePage: (){
-                  Navigator.push(context, MaterialPageRoute<void>(
-                    builder: (context) => NotePage(
-                      noteId: item.id,
-                      viewModel: viewModel
-                    )
-                  ));
-                }
+                key: ValueKey('$index'),
+                note: item, () => goToNotePage(item)
               );
             }
           );
         },
       ),
       floatingActionButton: FloatingActionButton(
+        onPressed: goToCreatePage,
         backgroundColor: scheme.secondary,
-        child: Icon(Icons.add, color: scheme.onSecondary),
-        onPressed: (){
-          viewModel.onAction(CreateNote());
-          Navigator.push(context, MaterialPageRoute<void>(
-            builder: (context) => CreatePage(viewModel: viewModel),
-          ));
-        }
+        child: Icon(Icons.add, color: scheme.onSecondary)
       ),
     );
   }
