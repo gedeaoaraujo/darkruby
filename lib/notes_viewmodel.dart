@@ -29,10 +29,8 @@ class NotesViewmodel extends ChangeNotifier {
         _state = state.copyWith(notes: _repository.getAllNotes());
       case SaveNote():
         _repository.createNewNote(state.newNote!);
-        // onAction(LoadNotes());
       case DeleteNote(:final noteId):
         _repository.deleteNoteById(noteId);
-        // onAction(LoadNotes());
     }
     notifyListeners();
   }
