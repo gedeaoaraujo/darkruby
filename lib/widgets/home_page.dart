@@ -41,20 +41,23 @@ class HomePage extends StatelessWidget {
         backgroundColor: scheme.primary,
         title: Text(title),
       ),
-      body: ListenableBuilder(
-        listenable: viewModel,
-        builder:(context, child) {
-          return ListView.builder(
-            itemCount: viewModel.state.notes.length,
-            itemBuilder: (_, index){
-              final item = viewModel.state.notes[index];
-              return ListItem(
-                key: ValueKey('$index'),
-                note: item, () => goToNotePage(item)
-              );
-            }
-          );
-        },
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        child: ListenableBuilder(
+          listenable: viewModel,
+          builder:(context, child) {
+            return ListView.builder(
+              itemCount: viewModel.state.notes.length,
+              itemBuilder: (_, index){
+                final item = viewModel.state.notes[index];
+                return ListItem(
+                  key: ValueKey('$index'),
+                  note: item, () => goToNotePage(item)
+                );
+              }
+            );
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: goToCreatePage,
