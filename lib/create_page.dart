@@ -24,9 +24,9 @@ class _CreatePage extends ConsumerState<CreatePage> {
     super.initState();
     state = ref.read(notesViewModel);
     viewModel = ref.read(notesViewModel.notifier);
-    titleController = TextEditingController(text: state.newNote?.title ?? '');
-    dateController = TextEditingController(text: state.newNote?.date ?? '');
-    textController = TextEditingController(text: state.newNote?.text ?? '');
+    titleController = .new(text: state.newNote?.title ?? '');
+    dateController = .new(text: state.newNote?.date ?? '');
+    textController = .new(text: state.newNote?.text ?? '');
   }
 
   @override
