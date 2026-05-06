@@ -4,6 +4,8 @@ class Note {
   final String date;
   final String text;
 
+  bool get isInserted => id != 0;
+
   const Note({
     this.id = 0,
     this.title = '', 
