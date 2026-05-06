@@ -20,6 +20,12 @@ class InMemoryDataBase {
   }
 
   void createNewNote(Note note) {
+    if (note.isInserted){
+      _notes.removeWhere((e) => e.id == note.id);
+      _notes.add(note);
+      return;
+    }
+
     final newId = _notes.length + 1;
     final newNote = Note(
       id: newId, title: note.title, 
