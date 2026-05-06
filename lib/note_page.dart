@@ -1,37 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:darkruby/injections.dart';
 import 'package:darkruby/model/note.dart';
 import 'package:darkruby/note_intent.dart';
 import 'package:darkruby/notes_viewmodel.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 enum PageType {
   view, edit, create
 }
 
-class NotePage extends ConsumerStatefulWidget {
-  final int noteId;
-  const NotePage({super.key, this.noteId = -1});
+class NotePage extends StatelessWidget {
 
-  @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _NotePage();
-}
-
-class _NotePage extends ConsumerState<NotePage> {
-
+  late final int noteId;
   late final NotesViewmodel viewModel;
-  late TextEditingController titleController;
-  late TextEditingController dateController;
-  late TextEditingController textController;
-
-  @override
-  void initState() {
-    super.initState();
-    viewModel = ref.read(notesViewModel.notifier);
-    
-    final state = ref.read(notesViewModel);
-    final selecNote = state.notes.firstWhere(
-      (e) => e.id == widget.noteId, orElse: () => Note()
+  late final TextEditingController titleController;
+  late final TextEditingController dateController;
+  late final TextEditingController textController;
+  
+  NotePage({super.key, required this.noteId, required this.viewModel}){
+    final selecNote = viewModel.state.notes.firstWhere(
+      (e) => e.id == noteId, orElse: () => Note()
     );
 
     titleController = .new(text: selecNote.title);
@@ -40,76 +26,74 @@ class _NotePage extends ConsumerState<NotePage> {
   }
 
   @override
-  void dispose() {
-    titleController.dispose();
-    dateController.dispose();
-    textController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
-    final state = ref.watch(notesViewModel);
-    final page = switch (state.readOnly) {
-      true => (title: 'View Note', icon: Icons.edit),
-      false => (title: 'Edit Note', icon: Icons.remove_red_eye),
-    };
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: scheme.primary,
-        title: Text(page.title),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.delete),
-            onPressed: (){
-              viewModel.onAction(DeleteNote(noteId: widget.noteId));
-              Navigator.pop(context);
-            }
-          ),
-          IconButton(
-            icon: Icon(page.icon),
-            onPressed: (){
-              viewModel.onAction(ToggleReadOnly());
-            }
-          )
-        ],
-      ),
-      body: Padding(
-        padding: const .all(16.0),
-        child: Expanded(
-          child: Column(
-            children: [
-              TextField(
-                readOnly: state.readOnly,
-                controller: titleController,
-                decoration: .new(
-                  border: .none,
-                  labelText: 'Título',
-                )),
-              TextField(
-                readOnly: state.readOnly,
-                controller: dateController,
-                decoration: .new(
-                  border: .none,
-                  labelText: 'Data',
-                )
+    return ListenableBuilder(
+      listenable: viewModel,
+      builder: (context, child){
+        return Scaffold(
+          appBar: AppBar(
+            backgroundColor: scheme.primary,
+            title: switch(viewModel.state.readOnly){
+              true => Text('View Note'),
+              false => Text('Edit Note'),
+            },
+            actions: [
+              IconButton(
+                icon: Icon(Icons.delete),
+                onPressed: (){
+                  viewModel.onAction(DeleteNote(noteId: noteId));
+                  Navigator.pop(context);
+                }
               ),
-              Expanded(
-                child: TextField(
-                  maxLines: null,
-                  readOnly: state.readOnly,
-                  controller: textController,
-                  decoration: .new(
-                    border: .none,
-                    labelText: 'Texto',
-                  )
-                ),
-              ),
+              IconButton(
+                icon: switch(viewModel.state.readOnly){
+                  true => Icon(Icons.edit),
+                  false => Icon(Icons.remove_red_eye),
+                },
+                onPressed: (){
+                  viewModel.onAction(ToggleReadOnly());
+                }
+              )
             ],
           ),
-        ),
-      ),
+          body: Padding(
+            padding: const .all(16.0),
+            child: Expanded(
+              child: Column(
+                children: [
+                  TextField(
+                    readOnly: viewModel.state.readOnly,
+                    controller: titleController,
+                    decoration: .new(
+                      border: .none,
+                      labelText: 'Título',
+                    )),
+                  TextField(
+                    readOnly: viewModel.state.readOnly,
+                    controller: dateController,
+                    decoration: .new(
+                      border: .none,
+                      labelText: 'Data',
+                    )
+                  ),
+                  Expanded(
+                    child: TextField(
+                      maxLines: null,
+                      readOnly: viewModel.state.readOnly,
+                      controller: textController,
+                      decoration: .new(
+                        border: .none,
+                        labelText: 'Texto',
+                      )
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      }
     );
   }
 }

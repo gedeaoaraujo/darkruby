@@ -1,22 +1,24 @@
 import 'package:darkruby/home_page.dart';
+import 'package:darkruby/notes_viewmodel.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(ProviderScope(child: const App()));
+  runApp(App());
 }
 
 const String _appName = 'Dark Ruby';
 
 class App extends StatelessWidget {
-  const App({super.key});
+  App({super.key});
+
+  final viewModel = NotesViewmodel();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: _appName,
       debugShowCheckedModeBanner: false,
-      home: const HomePage(title: _appName),
+      home: HomePage(title: _appName, viewModel: viewModel),
       theme: ThemeData(
         colorScheme: .dark(
           primary: Colors.red.shade900,

@@ -1,13 +1,14 @@
 import 'package:darkruby/model/note.dart';
 import 'package:flutter/material.dart';
-import 'package:darkruby/note_page.dart';
 
 class ListItem extends StatelessWidget {
   final Note note;
+  final void Function() goToNotePage;
 
   const ListItem({
     super.key,
-    required this.note
+    required this.note,
+    required this.goToNotePage
   });
 
   @override
@@ -16,11 +17,7 @@ class ListItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: ElevatedButton(
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute<void>(
-            builder: (context) => NotePage(noteId: note.id)
-          ));
-        },
+        onPressed: () => goToNotePage(),
         child: Column(
           crossAxisAlignment: .start,
           children: [

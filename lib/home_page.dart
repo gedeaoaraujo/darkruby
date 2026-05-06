@@ -1,34 +1,49 @@
 import 'package:darkruby/create_page.dart';
-import 'package:darkruby/injections.dart';
 import 'package:darkruby/list_item.dart';
 import 'package:darkruby/note_intent.dart';
+import 'package:darkruby/note_page.dart';
+import 'package:darkruby/notes_viewmodel.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomePage extends ConsumerWidget {
+class HomePage extends StatelessWidget {
   final String title;
+  final NotesViewmodel viewModel;
 
-  const HomePage({super.key, required this.title});
+  const HomePage({
+    super.key,
+    required this.title,
+    required this.viewModel
+  });
   
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
-    final state = ref.watch(notesViewModel);
-    final viewModel = ref.read(notesViewModel.notifier);
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: scheme.primary,
         title: Text(title),
       ),
-      body: Builder(
-        builder: (_) => ListView.builder(
-          itemCount: state.notes.length,
-          itemBuilder: (_, index){
-            final item = state.notes[index];
-            return ListItem(key: Key('$index'), note: item);
-          }
-        ) 
+      body: ListenableBuilder(
+        listenable: viewModel,
+        builder:(context, child) {
+          return ListView.builder(
+            itemCount: viewModel.state.notes.length,
+            itemBuilder: (_, index){
+              final item = viewModel.state.notes[index];
+              return ListItem(
+                key: ValueKey('$index'), note: item, goToNotePage: (){
+                  Navigator.push(context, MaterialPageRoute<void>(
+                    builder: (context) => NotePage(
+                      noteId: item.id,
+                      viewModel: viewModel
+                    )
+                  ));
+                }
+              );
+            }
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: scheme.secondary,
@@ -36,7 +51,7 @@ class HomePage extends ConsumerWidget {
         onPressed: (){
           viewModel.onAction(CreateNote());
           Navigator.push(context, MaterialPageRoute<void>(
-            builder: (context) => CreatePage(),
+            builder: (context) => CreatePage(viewModel: viewModel),
           ));
         }
       ),

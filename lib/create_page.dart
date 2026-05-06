@@ -1,47 +1,24 @@
-import 'package:darkruby/injections.dart';
-import 'package:darkruby/note_intent.dart';
-import 'package:darkruby/note_state.dart';
 import 'package:darkruby/notes_viewmodel.dart';
+import 'package:darkruby/note_intent.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CreatePage extends ConsumerStatefulWidget {
-  const CreatePage({super.key});
-  @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _CreatePage();
-}
+class CreatePage extends StatelessWidget {
 
-class _CreatePage extends ConsumerState<CreatePage> {
-
-  late final NoteState state;
   late final NotesViewmodel viewModel;
   late final TextEditingController titleController;
   late final TextEditingController dateController;
   late final TextEditingController textController;
 
-  @override
-  void initState() {
-    super.initState();
-    state = ref.read(notesViewModel);
-    viewModel = ref.read(notesViewModel.notifier);
-    titleController = .new(text: state.newNote?.title ?? '');
-    dateController = .new(text: state.newNote?.date ?? '');
-    textController = .new(text: state.newNote?.text ?? '');
-  }
-
-  @override
-  void dispose() {
-    titleController.dispose();
-    dateController.dispose();
-    textController.dispose();
-    super.dispose();
+  CreatePage({super.key, required this.viewModel}){
+    titleController = .new(text: viewModel.state.newNote?.title ?? '');
+    dateController = .new(text: viewModel.state.newNote?.date ?? '');
+    textController = .new(text: viewModel.state.newNote?.text ?? '');
   }
 
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
-
-   return Scaffold(
+    return Scaffold(
       appBar: AppBar(
         backgroundColor: scheme.primary,
         title: Text('Create Note'),
@@ -49,8 +26,8 @@ class _CreatePage extends ConsumerState<CreatePage> {
           IconButton(
             icon: Icon(Icons.check),
             onPressed: (){
-              Navigator.pop(context);
               viewModel.onAction(SaveNote());
+              Navigator.pop(context);
             }
           )
         ],
