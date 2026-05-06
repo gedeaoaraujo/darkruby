@@ -58,7 +58,7 @@ class HomePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: goToCreatePage,
-        backgroundColor: scheme.secondary,
+        backgroundColor: scheme.primary,
         child: Icon(Icons.add, color: scheme.onSecondary)
       ),
     );
