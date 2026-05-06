@@ -9,8 +9,8 @@ class NotesRepository {
     return _database.getAllNotes();
   }
 
-  void createNewNote(Note note){
-    _database.createNewNote(note);
+  void upsertNote(Note note){
+    _database.upsertNote(note);
   }
 
   void deleteNoteById(int noteId) {

@@ -19,10 +19,12 @@ class InMemoryDataBase {
     return _notes;
   }
 
-  void createNewNote(Note note) {
+  void upsertNote(Note note) {
     if (note.isInserted){
-      _notes.removeWhere((e) => e.id == note.id);
-      _notes.add(note);
+      final index = _notes.indexWhere(
+        (e) => e.id == note.id
+      );
+      _notes[index] = note;
       return;
     }
 
