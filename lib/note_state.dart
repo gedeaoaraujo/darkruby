@@ -1,5 +1,5 @@
 import 'package:darkruby/model/note.dart';
-import 'package:darkruby/note_page.dart';
+import 'package:darkruby/widgets/note_page.dart';
 
 class NoteState {
   final Note? newNote;

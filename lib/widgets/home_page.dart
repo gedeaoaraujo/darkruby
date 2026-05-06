@@ -1,7 +1,7 @@
-import 'package:darkruby/create_page.dart';
-import 'package:darkruby/list_item.dart';
+import 'package:darkruby/widgets/create_page.dart';
+import 'package:darkruby/widgets/list_item.dart';
 import 'package:darkruby/note_intent.dart';
-import 'package:darkruby/note_page.dart';
+import 'package:darkruby/widgets/note_page.dart';
 import 'package:darkruby/notes_viewmodel.dart';
 import 'package:flutter/material.dart';
 
