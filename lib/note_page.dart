@@ -1,50 +1,63 @@
+import 'package:flutter/material.dart';
 import 'package:darkruby/injections.dart';
 import 'package:darkruby/model/note.dart';
 import 'package:darkruby/note_intent.dart';
-import 'package:flutter/material.dart';
+import 'package:darkruby/note_state.dart';
+import 'package:darkruby/notes_viewmodel.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 enum PageType {
   view, edit, create
 }
 
-class NotePage extends ConsumerWidget {
+class NotePage extends ConsumerStatefulWidget {
   final int noteId;
-  
-  const NotePage({
-    super.key,
-    this.noteId = -1,
-  });
+  const NotePage({super.key, this.noteId = -1});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final scheme = Theme.of(context).colorScheme;
-    final state = ref.watch(notesViewModel);
-    final viewModel = ref.read(notesViewModel.notifier);
-    final selecNote = state.notes.firstWhere(
-      (e) => e.id == noteId, orElse: () => Note()
-    );
+  ConsumerState<ConsumerStatefulWidget> createState() => _NotePage();
+}
 
-    final titleController = TextEditingController.fromValue(.new(
-      text: selecNote.title,
-      selection: .collapsed(offset: selecNote.title.length),
-    ));
+class _NotePage extends ConsumerState<NotePage> {
 
-    final dateController = TextEditingController.fromValue(.new(
-      text: selecNote.date,
-      selection: .collapsed(offset: selecNote.date.length),
-    ));
+  late final ({IconData icon, String title}) page;
+  late final NoteState state;
+  late final NotesViewmodel viewModel;
+  late TextEditingController titleController;
+  late TextEditingController dateController;
+  late TextEditingController textController;
 
-    final textController = TextEditingController.fromValue(.new(
-      text: selecNote.text,
-      selection: .collapsed(offset: selecNote.text.length),
-    ));
+  @override
+  void initState() {
+    super.initState();
+    viewModel = ref.read(notesViewModel.notifier);
+    state = ref.read(notesViewModel);
 
-    final page = switch (state.readOnly) {
+    page = switch (state.readOnly) {
       true => (title: 'View Note', icon: Icons.edit),
       false => (title: 'Edit Note', icon: Icons.remove_red_eye),
     };
 
+    final selecNote = state.notes.firstWhere(
+      (e) => e.id == widget.noteId, orElse: () => Note()
+    );
+
+    titleController = .new(text: selecNote.title);
+    dateController = .new(text: selecNote.date);
+    textController = .new(text: selecNote.text);
+  }
+
+  @override
+  void dispose() {
+    titleController.dispose();
+    dateController.dispose();
+    textController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: scheme.primary,
@@ -53,7 +66,7 @@ class NotePage extends ConsumerWidget {
           IconButton(
             icon: Icon(Icons.delete),
             onPressed: (){
-              viewModel.onAction(DeleteNote(noteId: noteId));
+              viewModel.onAction(DeleteNote(noteId: widget.noteId));
               Navigator.pop(context);
             }
           ),
