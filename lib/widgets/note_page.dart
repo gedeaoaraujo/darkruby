@@ -51,46 +51,44 @@ class NotePage extends StatelessWidget {
           ),
           body: Padding(
             padding: const .all(16.0),
-            child: Expanded(
-              child: Column(
-                children: [
-                  TextField(
+            child: Column(
+              children: [
+                TextField(
+                  readOnly: viewModel.state.readOnly,
+                  controller: titleController,
+                  onChanged: (value) {
+                    viewModel.onAction(UpdateNote(title: value));
+                  },
+                  decoration: .new(
+                    border: .none,
+                    labelText: 'Título',
+                  )),
+                TextField(
+                  readOnly: viewModel.state.readOnly,
+                  controller: dateController,
+                  onChanged: (value) {
+                    viewModel.onAction(UpdateNote(date: value));
+                  },
+                  decoration: .new(
+                    border: .none,
+                    labelText: 'Data',
+                  )
+                ),
+                Expanded(
+                  child: TextField(
+                    maxLines: null,
                     readOnly: viewModel.state.readOnly,
-                    controller: titleController,
+                    controller: textController,
                     onChanged: (value) {
-                      viewModel.onAction(UpdateNote(title: value));
+                      viewModel.onAction(UpdateNote(text: value));
                     },
                     decoration: .new(
                       border: .none,
-                      labelText: 'Título',
-                    )),
-                  TextField(
-                    readOnly: viewModel.state.readOnly,
-                    controller: dateController,
-                    onChanged: (value) {
-                      viewModel.onAction(UpdateNote(date: value));
-                    },
-                    decoration: .new(
-                      border: .none,
-                      labelText: 'Data',
+                      labelText: 'Texto',
                     )
                   ),
-                  Expanded(
-                    child: TextField(
-                      maxLines: null,
-                      readOnly: viewModel.state.readOnly,
-                      controller: textController,
-                      onChanged: (value) {
-                        viewModel.onAction(UpdateNote(text: value));
-                      },
-                      decoration: .new(
-                        border: .none,
-                        labelText: 'Texto',
-                      )
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
           floatingActionButton:

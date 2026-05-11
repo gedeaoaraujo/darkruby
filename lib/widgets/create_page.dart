@@ -34,46 +34,44 @@ class CreatePage extends StatelessWidget {
       ),
       body: Padding(
         padding: const .all(16.0),
-        child: Expanded(
-          child: Column(
-            children: [
-              TextField(
+        child: Column(
+          children: [
+            TextField(
+              readOnly: false,
+              controller: titleController,
+              onChanged: (text){
+                viewModel.onAction(UpdateNote(title: text));
+              },
+              decoration: .new(
+                border: .none,
+                labelText: 'Título',
+              )),
+            TextField(
+              readOnly: false,
+              controller: dateController,
+              onChanged: (text){
+                viewModel.onAction(UpdateNote(date: text));
+              },
+              decoration: .new(
+                border: .none,
+                labelText: 'Data',
+              )
+            ),
+            Expanded(
+              child: TextField(
+                maxLines: null,
                 readOnly: false,
-                controller: titleController,
                 onChanged: (text){
-                  viewModel.onAction(UpdateNote(title: text));
+                  viewModel.onAction(UpdateNote(text: text));
                 },
+                controller: textController,
                 decoration: .new(
                   border: .none,
-                  labelText: 'Título',
-                )),
-              TextField(
-                readOnly: false,
-                controller: dateController,
-                onChanged: (text){
-                  viewModel.onAction(UpdateNote(date: text));
-                },
-                decoration: .new(
-                  border: .none,
-                  labelText: 'Data',
+                  labelText: 'Texto',
                 )
               ),
-              Expanded(
-                child: TextField(
-                  maxLines: null,
-                  readOnly: false,
-                  onChanged: (text){
-                    viewModel.onAction(UpdateNote(text: text));
-                  },
-                  controller: textController,
-                  decoration: .new(
-                    border: .none,
-                    labelText: 'Texto',
-                  )
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
