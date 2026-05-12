@@ -25,6 +25,7 @@ class NotePage extends StatelessWidget {
       builder: (context, child){
         return Scaffold(
           appBar: AppBar(
+            foregroundColor: scheme.onPrimary,
             backgroundColor: scheme.primary,
             title: switch(viewModel.state.readOnly){
               true => Text('View Note'),
@@ -99,7 +100,7 @@ class NotePage extends StatelessWidget {
                   viewModel.onAction(ToggleReadOnly());
                 },
                 backgroundColor: scheme.primary,
-                child: Icon(Icons.check, color: scheme.onSecondary)
+                child: Icon(Icons.check, color: scheme.onPrimary)
               )
         );
       }

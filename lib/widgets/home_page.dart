@@ -38,6 +38,7 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        foregroundColor: scheme.onPrimary,
         backgroundColor: scheme.primary,
         title: Text(title),
         actions: [
@@ -93,7 +94,7 @@ class HomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: goToCreatePage,
         backgroundColor: scheme.primary,
-        child: Icon(Icons.add, color: scheme.onSecondary)
+        child: Icon(Icons.add, color: scheme.onPrimary)
       ),
     );
   }
