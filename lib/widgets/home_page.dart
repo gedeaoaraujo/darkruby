@@ -40,21 +40,52 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: scheme.primary,
         title: Text(title),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.sunny),
+            onPressed: (){}
+          ),
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: (){
+              viewModel.onAction(ToggleSearch());
+            }
+          ),
+          IconButton(
+            icon: Icon(Icons.menu),
+            onPressed: (){}
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: ListenableBuilder(
           listenable: viewModel,
           builder:(context, child) {
-            return ListView.builder(
-              itemCount: viewModel.state.notes.length,
-              itemBuilder: (_, index){
-                final item = viewModel.state.notes[index];
-                return ListItem(
-                  key: ValueKey('$index'),
-                  note: item, () => goToNotePage(item)
-                );
-              }
+            return Column(
+              children: [
+                if (viewModel.state.search) Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 8.0, horizontal: 24.0
+                  ),
+                  child: TextField(
+                    controller: .new(),
+                    onChanged: (value){},
+                  ),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: viewModel.state.notes.length,
+                    itemBuilder: (_, index){
+                      final item = viewModel.state.notes[index];
+                      return ListItem(
+                        key: ValueKey('$index'),
+                        note: item, () => goToNotePage(item)
+                      );
+                    }
+                  ),
+                ),
+              ],
             );
           },
         ),
