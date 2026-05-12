@@ -44,7 +44,9 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
             icon: Icon(Icons.sunny),
-            onPressed: (){}
+            onPressed: (){
+              viewModel.onAction(ToggleTheme());
+            }
           ),
           IconButton(
             icon: Icon(Icons.search),
