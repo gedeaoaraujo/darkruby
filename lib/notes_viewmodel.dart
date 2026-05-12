@@ -35,6 +35,8 @@ class NotesViewmodel extends ChangeNotifier {
         final note = state.notes.firstWhere((e) => e.id == noteId);
         _state = state.copyWith(newNote: note);
         return;
+      case ToggleSearch():
+        _state = state.copyWith(search: !state.search);
     }
     notifyListeners();
   }
