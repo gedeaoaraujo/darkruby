@@ -1,7 +1,7 @@
 import 'package:darkruby/model/note.dart';
 import 'package:darkruby/note_intent.dart';
 import 'package:darkruby/note_state.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:darkruby/notes_repository.dart';
 
 class NotesViewmodel extends ChangeNotifier {
@@ -37,6 +37,10 @@ class NotesViewmodel extends ChangeNotifier {
         return;
       case ToggleSearch():
         _state = state.copyWith(search: !state.search);
+      case ToggleTheme():
+        final theme = state.theme == ThemeMode.light 
+          ? ThemeMode.dark : ThemeMode.light;
+        _state = state.copyWith(theme: theme);
     }
     notifyListeners();
   }
