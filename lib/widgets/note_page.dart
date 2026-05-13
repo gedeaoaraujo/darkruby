@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:darkruby/note_intent.dart';
 import 'package:darkruby/notes_viewmodel.dart';
 
-class NotePage extends StatelessWidget {
+class NotePage extends StatefulWidget {
 
   late final int noteId;
   late final NotesViewmodel viewModel;
@@ -18,13 +18,25 @@ class NotePage extends StatelessWidget {
   }
 
   @override
+  State<NotePage> createState() => _NotePageState();
+}
+
+class _NotePageState extends State<NotePage> {
+
+  @override
+  void initState() {
+    widget.viewModel.onAction(ToggleReadOnly(readOnly: true));
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
         foregroundColor: scheme.onPrimary,
         backgroundColor: scheme.primary,
-        title: switch(viewModel.state.readOnly){
+        title: switch(widget.viewModel.state.readOnly){
           true => Text('View Note'),
           false => Text('Edit Note'),
         },
@@ -32,17 +44,17 @@ class NotePage extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.delete),
             onPressed: (){
-              viewModel.onAction(DeleteNote(noteId: noteId));
+              widget.viewModel.onAction(DeleteNote(noteId: widget.noteId));
               Navigator.pop(context);
             }
           ),
           IconButton(
-            icon: switch(viewModel.state.readOnly){
+            icon: switch(widget.viewModel.state.readOnly){
               true => Icon(Icons.edit),
               false => Icon(Icons.remove_red_eye),
             },
             onPressed: (){
-              viewModel.onAction(ToggleReadOnly());
+              widget.viewModel.onAction(ToggleReadOnly());
             }
           )
         ],
@@ -52,20 +64,20 @@ class NotePage extends StatelessWidget {
         child: Column(
           children: [
             TextField(
-              readOnly: viewModel.state.readOnly,
-              controller: titleController,
+              readOnly: widget.viewModel.state.readOnly,
+              controller: widget.titleController,
               onChanged: (value) {
-                titleController.text = value;
+                widget.titleController.text = value;
               },
               decoration: .new(
                 border: .none,
                 labelText: 'Título',
               )),
             TextField(
-              readOnly: viewModel.state.readOnly,
-              controller: dateController,
+              readOnly: widget.viewModel.state.readOnly,
+              controller: widget.dateController,
               onChanged: (value) {
-                dateController.text = value;
+                widget.dateController.text = value;
               },
               decoration: .new(
                 border: .none,
@@ -75,10 +87,10 @@ class NotePage extends StatelessWidget {
             Expanded(
               child: TextField(
                 maxLines: null,
-                readOnly: viewModel.state.readOnly,
-                controller: textController,
+                readOnly: widget.viewModel.state.readOnly,
+                controller: widget.textController,
                 onChanged: (value) {
-                  textController.text = value;
+                  widget.textController.text = value;
                 },
                 decoration: .new(
                   border: .none,
@@ -90,16 +102,16 @@ class NotePage extends StatelessWidget {
         ),
       ),
       floatingActionButton:
-        viewModel.state.readOnly == true ? null :
+        widget.viewModel.state.readOnly == true ? null :
           FloatingActionButton(
             onPressed: (){
-              viewModel.onAction(UpdateNote(
-                title: titleController.text,
-                date: dateController.text,
-                text: textController.text
+              widget.viewModel.onAction(UpdateNote(
+                title: widget.titleController.text,
+                date: widget.dateController.text,
+                text: widget.textController.text
               ));
-              viewModel.onAction(SaveNote());
-              viewModel.onAction(ToggleReadOnly());
+              widget.viewModel.onAction(SaveNote());
+              widget.viewModel.onAction(ToggleReadOnly());
             },
             backgroundColor: scheme.primary,
             child: Icon(Icons.check, color: scheme.onPrimary)
