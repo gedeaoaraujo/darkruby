@@ -4,7 +4,11 @@ class LoadNotes extends NoteIntent {}
 class CreateNote extends NoteIntent {}
 class ToggleTheme extends NoteIntent {}
 class ToggleSearch extends NoteIntent {}
-class ToggleReadOnly extends NoteIntent {}
+
+class ToggleReadOnly extends NoteIntent {
+  final bool? readOnly;
+  ToggleReadOnly({this.readOnly});
+}
 
 class SelectNote extends NoteIntent {
   final int noteId;

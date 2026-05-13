@@ -16,8 +16,8 @@ class NotesViewmodel extends ChangeNotifier {
 
   void onAction(NoteIntent intent) {
     switch (intent) {
-      case ToggleReadOnly():
-        _state = state.copyWith(readOnly: !state.readOnly);
+      case ToggleReadOnly(:final readOnly):
+        _state = state.copyWith(readOnly: readOnly ?? !state.readOnly);
       case CreateNote():
         _state = state.copyWith(newNote: Note());
       case UpdateNote(:final title, :final date, :final text):
