@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 class HomePage extends StatelessWidget {
   final String title;
   final NotesViewmodel viewModel;
+  static final TextEditingController searchController = .new();
 
   const HomePage({
     super.key,
@@ -62,35 +63,32 @@ class HomePage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
-        child: ListenableBuilder(
-          listenable: viewModel,
-          builder:(context, child) {
-            return Column(
-              children: [
-                if (viewModel.state.search) Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 8.0, horizontal: 24.0
-                  ),
-                  child: TextField(
-                    controller: .new(),
-                    onChanged: (value){},
-                  ),
-                ),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: viewModel.state.notes.length,
-                    itemBuilder: (_, index){
-                      final item = viewModel.state.notes[index];
-                      return ListItem(
-                        key: ValueKey('$index'),
-                        note: item, () => goToNotePage(item)
-                      );
-                    }
-                  ),
-                ),
-              ],
-            );
-          },
+        child: Column(
+          children: [
+            if (viewModel.state.search) Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 8.0, horizontal: 24.0
+              ),
+              child: TextField(
+                controller: searchController,
+                onChanged: (value){
+                  searchController.text = value;
+                },
+              ),
+            ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: viewModel.state.notes.length,
+                itemBuilder: (_, index){
+                  final item = viewModel.state.notes[index];
+                  return ListItem(
+                    key: ValueKey('$index'),
+                    note: item, () => goToNotePage(item)
+                  );
+                }
+              ),
+            ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(

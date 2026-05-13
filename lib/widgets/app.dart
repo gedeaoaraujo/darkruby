@@ -4,25 +4,21 @@ import 'package:flutter/material.dart';
 
 const String _appName = 'Dark Ruby';
 
-class App extends StatefulWidget {
-  const App({super.key});
-  @override
-  State<App> createState() => _AppState();
-}
-
-class _AppState extends State<App> {
+class App extends StatelessWidget {
+  App({super.key});
+  
   final viewModel = NotesViewmodel();
 
   @override
   Widget build(BuildContext context) {
-    return ListenableBuilder(
-      listenable: viewModel,
-      builder: (context, child) {
+    return AnimatedBuilder(
+      animation: viewModel,
+      builder: (context, _) {
         return MaterialApp(
           title: _appName,
           debugShowCheckedModeBanner: false,
           home: HomePage(title: _appName, viewModel: viewModel),
-          theme: ThemeData(
+          theme: .new(
             colorScheme: .light(
               primary: Colors.red.shade900,
               onPrimary: Colors.white,
@@ -30,10 +26,10 @@ class _AppState extends State<App> {
               onSecondary: Colors.black87,
             ),
           ),
-          darkTheme: ThemeData(
+          darkTheme: .new(
             colorScheme: .dark(
               primary: Colors.red.shade900,
-              onPrimary: Colors.black,
+              onPrimary: Colors.white,
               secondary: Colors.black87,
               onSecondary: Colors.white70,
             ),
