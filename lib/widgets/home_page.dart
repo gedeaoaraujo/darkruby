@@ -9,9 +9,9 @@ import 'package:flutter/material.dart';
 class HomePage extends StatelessWidget {
   final String title;
   final NotesViewmodel viewModel;
-  static final TextEditingController searchController = .new();
+  final TextEditingController searchController = .new();
 
-  const HomePage({
+  HomePage({
     super.key,
     required this.title,
     required this.viewModel
