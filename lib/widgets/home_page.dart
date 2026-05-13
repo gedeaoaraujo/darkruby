@@ -6,34 +6,47 @@ import 'package:darkruby/widgets/note_page.dart';
 import 'package:darkruby/notes_viewmodel.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   final String title;
   final NotesViewmodel viewModel;
-  final TextEditingController searchController = .new();
 
-  HomePage({
+  const HomePage({
     super.key,
     required this.title,
     required this.viewModel
   });
-  
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final TextEditingController searchController = .new();
+
+  bool searchFilter(Note note){
+    return note.title.contains(searchController.text)
+      || note.date.contains(searchController.text)
+      || note.text.contains(searchController.text);
+  }
+
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final notes = widget.viewModel.state.notes.where(searchFilter);
 
     void goToNotePage(Note item) {
       Navigator.push(context, MaterialPageRoute<void>(
         builder: (context) => NotePage(
           noteId: item.id,
-          viewModel: viewModel
+          viewModel: widget.viewModel
         )
       ));
     }
 
     void goToCreatePage(){
-      viewModel.onAction(CreateNote());
+      widget.viewModel.onAction(CreateNote());
       Navigator.push(context, MaterialPageRoute<void>(
-        builder: (context) => CreatePage(viewModel: viewModel),
+        builder: (context) => CreatePage(viewModel: widget.viewModel),
       ));
     }
 
@@ -41,18 +54,18 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         foregroundColor: scheme.onPrimary,
         backgroundColor: scheme.primary,
-        title: Text(title),
+        title: Text(widget.title),
         actions: [
           IconButton(
             icon: Icon(Icons.sunny),
             onPressed: (){
-              viewModel.onAction(ToggleTheme());
+              widget.viewModel.onAction(ToggleTheme());
             }
           ),
           IconButton(
             icon: Icon(Icons.search),
             onPressed: (){
-              viewModel.onAction(ToggleSearch());
+              widget.viewModel.onAction(ToggleSearch());
             }
           ),
           IconButton(
@@ -65,22 +78,22 @@ class HomePage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: Column(
           children: [
-            if (viewModel.state.search) Padding(
+            if (widget.viewModel.state.search) Padding(
               padding: const EdgeInsets.symmetric(
                 vertical: 8.0, horizontal: 24.0
               ),
               child: TextField(
                 controller: searchController,
                 onChanged: (value){
-                  searchController.text = value;
+                  setState((){ searchController.text = value; });
                 },
               ),
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: viewModel.state.notes.length,
+                itemCount: notes.length,
                 itemBuilder: (_, index){
-                  final item = viewModel.state.notes[index];
+                  final item = notes.elementAt(index);
                   return ListItem(
                     key: ValueKey('$index'),
                     note: item, () => goToNotePage(item)
