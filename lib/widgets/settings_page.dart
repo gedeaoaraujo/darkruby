@@ -25,16 +25,16 @@ class SettingsPage extends StatelessWidget {
             Divider(color: scheme.onSecondary),
 
             Text('Language', style: .new(color: scheme.primary, fontSize: 18)),
-            Text('Select Language', style: .new(color: scheme.onPrimary, fontSize: 16)),
+            Text('Select Language', style: .new(fontSize: 16)),
             Divider(color: scheme.onSecondary),
             
             Text('Password', style: .new(color: scheme.primary, fontSize: 18)),
-            Text('Modify Password', style: .new(color: scheme.onPrimary, fontSize: 16)),
+            Text('Modify Password', style: .new(fontSize: 16)),
             Divider(color: scheme.onSecondary),
             
             Text('Backup', style: .new(color: scheme.primary, fontSize: 18)),
-            Text('Export Notes', style: .new(color: scheme.onPrimary, fontSize: 16)),
-            Text('Import Notes', style: .new(color: scheme.onPrimary, fontSize: 16)),
+            Text('Export Notes', style: .new(fontSize: 16)),
+            Text('Import Notes', style: .new(fontSize: 16)),
           ],
         ),
       )
