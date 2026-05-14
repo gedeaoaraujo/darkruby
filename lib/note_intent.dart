@@ -4,6 +4,11 @@ class LoadNotes extends NoteIntent {}
 class CreateNote extends NoteIntent {}
 class ToggleTheme extends NoteIntent {}
 
+class CheckPassword extends NoteIntent {
+  final String password;
+  CheckPassword(this.password);
+}
+
 class ToggleSearch extends NoteIntent {
   final bool? search;
   ToggleSearch({this.search});

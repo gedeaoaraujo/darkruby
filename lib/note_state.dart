@@ -5,11 +5,13 @@ class NoteState {
   final bool search;
   final Note? newNote;
   final bool readOnly;
+  final bool password;
   final ThemeMode theme;
   final List<Note> notes;
   
   NoteState({
     this.newNote,
+    this.password = false,
     this.search = false,
     this.readOnly = true,
     this.notes = const [],
@@ -20,6 +22,7 @@ class NoteState {
     bool? search,
     Note? newNote,
     bool? readOnly,
+    bool? password,
     ThemeMode? theme,
     List<Note>? notes,
   }) => NoteState(
@@ -27,6 +30,7 @@ class NoteState {
     notes: notes ?? this.notes,
     search: search ?? this.search,
     newNote: newNote ?? this.newNote,
+    password: password ?? this.password,
     readOnly: readOnly ?? this.readOnly,
   );
 }
