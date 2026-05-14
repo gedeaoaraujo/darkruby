@@ -9,8 +9,9 @@ import 'package:flutter/material.dart';
 class HomePage extends StatefulWidget {
   final String title;
   final NotesViewmodel viewModel;
+  final TextEditingController searchController = .new();
 
-  const HomePage({
+  HomePage({
     super.key,
     required this.title,
     required this.viewModel
@@ -21,18 +22,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final TextEditingController searchController = .new();
 
-  bool searchFilter(Note note){
-    return note.title.contains(searchController.text)
-      || note.date.contains(searchController.text)
-      || note.text.contains(searchController.text);
+  Iterable<Note> get filteredNotes {
+    final text = widget.searchController.text;
+    return widget.viewModel.state.notes
+      .where((note) => note.containText(text));
+  }
+
+  @override
+  void dispose() {
+    widget.searchController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final notes = filteredNotes;
     final scheme = Theme.of(context).colorScheme;
-    final notes = widget.viewModel.state.notes.where(searchFilter);
 
     void goToNotePage(Note item) {
       Navigator.push(context, MaterialPageRoute<void>(
@@ -65,6 +71,7 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             icon: Icon(Icons.search),
             onPressed: (){
+              setState(()=> widget.searchController.text = '');
               widget.viewModel.onAction(ToggleSearch());
             }
           ),
@@ -83,9 +90,9 @@ class _HomePageState extends State<HomePage> {
                 vertical: 8.0, horizontal: 24.0
               ),
               child: TextField(
-                controller: searchController,
+                controller: widget.searchController,
                 onChanged: (value){
-                  setState((){ searchController.text = value; });
+                  setState(()=> widget.searchController.text = value);
                 },
               ),
             ),
