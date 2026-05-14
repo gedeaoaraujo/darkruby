@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
             }
           ),
           IconButton(
-            icon: Icon(Icons.menu),
+            icon: Icon(Icons.more_vert),
             onPressed: ()=> goToSettings()
           ),
         ],
