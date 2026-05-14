@@ -50,19 +50,19 @@ class _NotePageState extends State<NotePage> {
         },
         actions: [
           IconButton(
-            icon: Icon(Icons.delete),
-            onPressed: (){
-              widget.viewModel.onAction(DeleteNote(noteId: widget.noteId));
-              Navigator.pop(context);
-            }
-          ),
-          IconButton(
             icon: switch(widget.viewModel.state.readOnly){
               true => Icon(Icons.edit),
               false => Icon(Icons.remove_red_eye),
             },
             onPressed: (){
               widget.viewModel.onAction(ToggleReadOnly());
+            }
+          ),
+          IconButton(
+            icon: Icon(Icons.delete),
+            onPressed: (){
+              widget.viewModel.onAction(DeleteNote(noteId: widget.noteId));
+              Navigator.pop(context);
             }
           )
         ],
