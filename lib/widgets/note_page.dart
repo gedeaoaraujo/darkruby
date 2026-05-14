@@ -50,6 +50,10 @@ class _NotePageState extends State<NotePage> {
         },
         actions: [
           IconButton(
+            icon: Icon(Icons.share),
+            onPressed: (){},
+          ),
+          IconButton(
             icon: switch(widget.viewModel.state.readOnly){
               true => Icon(Icons.edit),
               false => Icon(Icons.remove_red_eye),
