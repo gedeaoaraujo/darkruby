@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class PasswordPage extends StatelessWidget{
-  const PasswordPage({super.key});
+  PasswordPage({super.key});
+
+  final TextEditingController password = .new();
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +24,15 @@ class PasswordPage extends StatelessWidget{
               child: TextField(
                 showCursor: true,
                 cursorColor: scheme.onPrimary,
+                controller: password,
                 decoration: .new(
-                border: OutlineInputBorder(),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: .new(color: scheme.onPrimary, width: 1)
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: .new(color: scheme.onPrimary, width: 1)
-                ),
+                  border: OutlineInputBorder(),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: .new(color: scheme.onPrimary, width: 1)
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: .new(color: scheme.onPrimary, width: 1)
+                  ),
               )),
             ),
             
@@ -38,17 +41,17 @@ class PasswordPage extends StatelessWidget{
               mainAxisAlignment: .center,
               children: [
               FloatingActionButton(
-                onPressed: (){},
+                onPressed: ()=> password.text += '1',
                 backgroundColor: scheme.primary,
                 child: Text('1')
               ),
               FloatingActionButton(
-                onPressed: (){},
+                onPressed: ()=> password.text += '2',
                 backgroundColor: scheme.primary,
                 child: Text('2')
               ),
               FloatingActionButton(
-                onPressed: (){},
+                onPressed: ()=> password.text += '3',
                 backgroundColor: scheme.primary,
                 child: Text('3')
               ),
@@ -59,17 +62,17 @@ class PasswordPage extends StatelessWidget{
               mainAxisAlignment: .center,
               children: [
                 FloatingActionButton(
-                  onPressed: (){},
+                  onPressed: ()=> password.text += '4',
                   backgroundColor: scheme.primary,
                   child: Text('4')
                 ),
                 FloatingActionButton(
-                  onPressed: (){},
+                  onPressed: ()=> password.text += '5',
                   backgroundColor: scheme.primary,
                   child: Text('5')
                 ),
                 FloatingActionButton(
-                  onPressed: (){},
+                  onPressed: ()=> password.text += '6',
                   backgroundColor: scheme.primary,
                   child: Text('6')
                 ),
@@ -81,17 +84,17 @@ class PasswordPage extends StatelessWidget{
               mainAxisAlignment: .center,
               children: [
                 FloatingActionButton(
-                  onPressed: (){},
+                  onPressed: () => password.text += '7',
                   backgroundColor: scheme.primary,
                   child: Text('7')
                 ),
                 FloatingActionButton(
-                  onPressed: (){},
+                  onPressed: () => password.text += '8',
                   backgroundColor: scheme.primary,
                   child: Text('8')
                 ),
                 FloatingActionButton(
-                  onPressed: (){},
+                  onPressed: () => password.text += '9',
                   backgroundColor: scheme.primary,
                   child: Text('9')
                 ),
@@ -103,17 +106,21 @@ class PasswordPage extends StatelessWidget{
               mainAxisAlignment: .center,
               children: [
                 FloatingActionButton(
-                  onPressed: (){},
+                  onPressed: () => password.text += '#',
                   backgroundColor: scheme.primary,
                   child: Text('#')
                 ),
                 FloatingActionButton(
-                  onPressed: (){},
+                  onPressed: () => password.text += '0',
                   backgroundColor: scheme.primary,
                   child: Text('0')
                 ),
                 FloatingActionButton(
-                  onPressed: (){},
+                  onPressed: (){
+                    final text = password.text;
+                    final subText = text.length-1;
+                    password.text = text.substring(0, subText);
+                  },
                   backgroundColor: scheme.primary,
                   child: Icon(Icons.backspace)
                 )
