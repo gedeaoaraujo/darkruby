@@ -1,8 +1,17 @@
+import 'package:darkruby/note_intent.dart';
+import 'package:darkruby/notes_viewmodel.dart';
 import 'package:flutter/material.dart';
 
-class SettingsPage extends StatelessWidget {
-  const SettingsPage({super.key});
-  
+class SettingsPage extends StatefulWidget {
+  final NotesViewmodel viewModel;
+
+  const SettingsPage(this.viewModel, {super.key});
+
+  @override
+  State<SettingsPage> createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;

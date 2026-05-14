@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
 
   void goToSettings(){
     Navigator.push(context, MaterialPageRoute(
-      builder: (context) => SettingsPage()
+      builder: (context) => SettingsPage(widget.viewModel)
     ));
   }
 
