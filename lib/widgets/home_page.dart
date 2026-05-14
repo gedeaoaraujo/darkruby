@@ -4,6 +4,7 @@ import 'package:darkruby/widgets/list_item.dart';
 import 'package:darkruby/note_intent.dart';
 import 'package:darkruby/widgets/note_page.dart';
 import 'package:darkruby/notes_viewmodel.dart';
+import 'package:darkruby/widgets/settings_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -53,6 +54,12 @@ class _HomePageState extends State<HomePage> {
     ));
   }
 
+  void goToSettings(){
+    Navigator.push(context, MaterialPageRoute(
+      builder: (context) => SettingsPage()
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     final notes = filteredNotes;
@@ -78,7 +85,7 @@ class _HomePageState extends State<HomePage> {
           ),
           IconButton(
             icon: Icon(Icons.menu),
-            onPressed: (){}
+            onPressed: ()=> goToSettings()
           ),
         ],
       ),
