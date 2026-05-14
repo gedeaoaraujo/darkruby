@@ -1,5 +1,5 @@
 import 'package:darkruby/notes_viewmodel.dart';
-import 'package:darkruby/widgets/home_page.dart';
+import 'package:darkruby/widgets/password_page.dart';
 import 'package:flutter/material.dart';
 
 const String _appName = 'Dark Ruby';
@@ -17,7 +17,7 @@ class App extends StatelessWidget {
         return MaterialApp(
           title: _appName,
           debugShowCheckedModeBanner: false,
-          home: HomePage(title: _appName, viewModel: viewModel),
+          home: PasswordPage(viewModel: viewModel),
           theme: .new(
             colorScheme: .light(
               primary: Colors.red.shade900,
