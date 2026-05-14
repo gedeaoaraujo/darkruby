@@ -16,4 +16,8 @@ class NotesRepository {
   void deleteNoteById(int noteId) {
     _database.deleteNoteById(noteId);
   }
+
+  bool checkPassword(String password) {
+    return _database.checkPassword(password);
+  }
 }

@@ -1,6 +1,7 @@
 import 'package:darkruby/model/note.dart';
 
 class InMemoryDataBase {
+  final String _password = '888';
   final List<Note> _notes = .empty(growable: true);
   
   InMemoryDataBase() {
@@ -38,5 +39,9 @@ class InMemoryDataBase {
 
   void deleteNoteById(int noteId) {
     _notes.removeWhere((e) => e.id == noteId);
+  }
+
+  bool checkPassword(String password){
+    return password == _password;
   }
 }
