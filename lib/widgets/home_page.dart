@@ -36,6 +36,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void goToNotePage(Note item) {
+    widget.viewModel.onAction(ToggleSearch(search: false));
     Navigator.push(context, MaterialPageRoute<void>(
       builder: (context) => NotePage(
         noteId: item.id,
@@ -45,6 +46,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void goToCreatePage(){
+    widget.viewModel.onAction(ToggleSearch(search: false));
     widget.viewModel.onAction(CreateNote());
     Navigator.push(context, MaterialPageRoute<void>(
       builder: (context) => CreatePage(viewModel: widget.viewModel),
