@@ -35,27 +35,26 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
 
+  void goToNotePage(Note item) {
+    Navigator.push(context, MaterialPageRoute<void>(
+      builder: (context) => NotePage(
+        noteId: item.id,
+        viewModel: widget.viewModel
+      )
+    ));
+  }
+
+  void goToCreatePage(){
+    widget.viewModel.onAction(CreateNote());
+    Navigator.push(context, MaterialPageRoute<void>(
+      builder: (context) => CreatePage(viewModel: widget.viewModel),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     final notes = filteredNotes;
     final scheme = Theme.of(context).colorScheme;
-
-    void goToNotePage(Note item) {
-      Navigator.push(context, MaterialPageRoute<void>(
-        builder: (context) => NotePage(
-          noteId: item.id,
-          viewModel: widget.viewModel
-        )
-      ));
-    }
-
-    void goToCreatePage(){
-      widget.viewModel.onAction(CreateNote());
-      Navigator.push(context, MaterialPageRoute<void>(
-        builder: (context) => CreatePage(viewModel: widget.viewModel),
-      ));
-    }
-
     return Scaffold(
       appBar: AppBar(
         foregroundColor: scheme.onPrimary,
