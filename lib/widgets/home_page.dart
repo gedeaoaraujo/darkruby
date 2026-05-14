@@ -92,6 +92,7 @@ class _HomePageState extends State<HomePage> {
               ),
               child: TextField(
                 controller: widget.searchController,
+                decoration: .new(hintText: 'Text to filter...'),
                 onChanged: (value){
                   setState(()=> widget.searchController.text = value);
                 },
