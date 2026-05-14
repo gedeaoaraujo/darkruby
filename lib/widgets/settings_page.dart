@@ -12,6 +12,8 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  int? _selectedValue = 0;
+
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
@@ -29,8 +31,31 @@ class _SettingsPageState extends State<SettingsPage> {
           crossAxisAlignment: .start,
           children: [
             Text('Theme', style: .new(color: scheme.primary, fontSize: 18)),
-            Text('Dark', style: .new(color: scheme.onPrimary, fontSize: 16)),
-            Text('Light', style: .new(color: scheme.onPrimary, fontSize: 16)),
+            RadioGroup<int>(
+              groupValue: _selectedValue,
+              onChanged: (int? value) {
+                widget.viewModel.onAction(ToggleTheme());
+                setState(() => _selectedValue = value);
+              },
+              child: Column(
+                children: <Widget>[
+                  RadioListTile<int>(
+                    value: 0, 
+                    minTileHeight: 0,
+                    horizontalTitleGap: 0,
+                    title: const Text('Dark'),
+                    contentPadding: EdgeInsets.all(0),
+                  ),
+                  RadioListTile<int>(
+                    value: 1, 
+                    minTileHeight: 0,
+                    horizontalTitleGap: 0,
+                    title: const Text('Light'),
+                    contentPadding: EdgeInsets.all(0),
+                  ),
+                ],
+              ),
+            ),
             Divider(color: scheme.onSecondary),
 
             Text('Language', style: .new(color: scheme.primary, fontSize: 18)),
