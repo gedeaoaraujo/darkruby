@@ -24,4 +24,10 @@ class Note {
     date: date ?? this.date,
     text: text ?? this.text
   );
+
+  bool containText(String txt){
+    return title.toLowerCase().contains(txt.toLowerCase())
+      || date.toLowerCase().contains(txt.toLowerCase())
+      || text.toLowerCase().contains(txt.toLowerCase());
+  }
 }
