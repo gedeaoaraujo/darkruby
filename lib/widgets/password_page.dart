@@ -1,9 +1,26 @@
+import 'package:darkruby/note_intent.dart';
+import 'package:darkruby/notes_viewmodel.dart';
+import 'package:darkruby/widgets/home_page.dart';
 import 'package:flutter/material.dart';
 
 class PasswordPage extends StatelessWidget{
-  PasswordPage({super.key});
+  PasswordPage({super.key, required this.viewModel});
 
+  final NotesViewmodel viewModel;
   final TextEditingController password = .new();
+
+  void checkPassword(BuildContext context){
+    viewModel.onAction(CheckPassword(password.text));
+    
+    if (viewModel.state.password){
+      Navigator.pushReplacement(context, MaterialPageRoute(
+        builder: (context) => HomePage(
+          title: 'Dark Ruby',
+          viewModel: viewModel
+        )
+      ));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +39,7 @@ class PasswordPage extends StatelessWidget{
             SizedBox(
               width: 200,
               child: TextField(
-                showCursor: true,
+                enabled: false,
                 cursorColor: scheme.onPrimary,
                 controller: password,
                 decoration: .new(
@@ -31,6 +48,9 @@ class PasswordPage extends StatelessWidget{
                     borderSide: .new(color: scheme.onPrimary, width: 1)
                   ),
                   focusedBorder: OutlineInputBorder(
+                    borderSide: .new(color: scheme.onPrimary, width: 1)
+                  ),
+                  disabledBorder: OutlineInputBorder(
                     borderSide: .new(color: scheme.onPrimary, width: 1)
                   ),
               )),
@@ -139,7 +159,7 @@ class PasswordPage extends StatelessWidget{
                   child: Icon(Icons.fingerprint)
                 ),
                 FloatingActionButton(
-                  onPressed: (){},
+                  onPressed: ()=> checkPassword(context),
                   backgroundColor: scheme.primary,
                   child: Icon(Icons.check_circle_outline)
                 ),
