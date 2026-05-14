@@ -30,6 +30,14 @@ class _NotePageState extends State<NotePage> {
   }
 
   @override
+  void dispose() {
+    widget.titleController.dispose();
+    widget.dateController.dispose();
+    widget.textController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
     return Scaffold(
