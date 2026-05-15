@@ -37,6 +37,7 @@ class _CreatePageState extends State<CreatePage> {
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
     return Scaffold(
+      backgroundColor: scheme.secondaryContainer,
       appBar: AppBar(
         foregroundColor: scheme.onPrimary,
         backgroundColor: scheme.primary,

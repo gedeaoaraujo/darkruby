@@ -41,6 +41,7 @@ class _NotePageState extends State<NotePage> {
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
     return Scaffold(
+      backgroundColor: scheme.secondaryContainer,
       appBar: AppBar(
         foregroundColor: scheme.onPrimary,
         backgroundColor: scheme.primary,

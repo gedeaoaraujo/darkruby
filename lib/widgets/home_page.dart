@@ -67,6 +67,7 @@ class _HomePageState extends State<HomePage> {
     final notes = filteredNotes;
     final scheme = Theme.of(context).colorScheme;
     return Scaffold(
+      backgroundColor: scheme.secondaryContainer,
       appBar: AppBar(
         foregroundColor: scheme.onPrimary,
         backgroundColor: scheme.primary,

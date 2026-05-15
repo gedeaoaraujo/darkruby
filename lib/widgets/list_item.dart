@@ -15,6 +15,7 @@ class ListItem extends StatelessWidget {
     final scheme = Theme.of(context).colorScheme;
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
+        backgroundColor: scheme.primaryContainer,
         minimumSize: const .new(.infinity, 0),
         shape: RoundedRectangleBorder(borderRadius: .circular(8))
       ),
