@@ -1,3 +1,4 @@
+import 'package:darkruby/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:darkruby/note_intent.dart';
 import 'package:darkruby/notes_viewmodel.dart';
@@ -122,7 +123,7 @@ class _NotePageState extends State<NotePage> {
         ),
       ),
       floatingActionButton: Visibility(
-        visible: !widget.viewModel.state.readOnly,
+        visible: state.readOnly.not(),
         child: FloatingActionButton(
           heroTag: 'buttonCheck',
           onPressed: (){
