@@ -114,9 +114,14 @@ class _HomePageState extends State<HomePage> {
                 itemCount: notes.length,
                 itemBuilder: (_, index){
                   final item = notes.elementAt(index);
-                  return ListItem(
-                    key: ValueKey('$index'),
-                    note: item, () => goToNotePage(item)
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8.0, vertical: 2.0
+                    ),
+                    child: ListItem(
+                      key: ValueKey('$index'),
+                      note: item, () => goToNotePage(item)
+                    ),
                   );
                 }
               ),
