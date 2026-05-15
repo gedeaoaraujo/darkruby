@@ -130,6 +130,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        heroTag: 'buttonAdd',
         onPressed: goToCreatePage,
         backgroundColor: scheme.primary,
         child: Icon(Icons.add, color: scheme.onPrimary)

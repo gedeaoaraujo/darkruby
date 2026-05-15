@@ -61,16 +61,19 @@ class PasswordPage extends StatelessWidget{
               mainAxisAlignment: .center,
               children: [
               FloatingActionButton(
+                heroTag: 'button1',
                 onPressed: ()=> password.text += '1',
                 backgroundColor: scheme.primary,
                 child: Text('1')
               ),
               FloatingActionButton(
+                heroTag: 'button2',
                 onPressed: ()=> password.text += '2',
                 backgroundColor: scheme.primary,
                 child: Text('2')
               ),
               FloatingActionButton(
+                heroTag: 'button3',
                 onPressed: ()=> password.text += '3',
                 backgroundColor: scheme.primary,
                 child: Text('3')
@@ -82,16 +85,19 @@ class PasswordPage extends StatelessWidget{
               mainAxisAlignment: .center,
               children: [
                 FloatingActionButton(
+                  heroTag: 'button4',
                   onPressed: ()=> password.text += '4',
                   backgroundColor: scheme.primary,
                   child: Text('4')
                 ),
                 FloatingActionButton(
+                  heroTag: 'button5',
                   onPressed: ()=> password.text += '5',
                   backgroundColor: scheme.primary,
                   child: Text('5')
                 ),
                 FloatingActionButton(
+                  heroTag: 'button6',
                   onPressed: ()=> password.text += '6',
                   backgroundColor: scheme.primary,
                   child: Text('6')
@@ -104,16 +110,19 @@ class PasswordPage extends StatelessWidget{
               mainAxisAlignment: .center,
               children: [
                 FloatingActionButton(
+                  heroTag: 'button7',
                   onPressed: () => password.text += '7',
                   backgroundColor: scheme.primary,
                   child: Text('7')
                 ),
                 FloatingActionButton(
+                  heroTag: 'button8',
                   onPressed: () => password.text += '8',
                   backgroundColor: scheme.primary,
                   child: Text('8')
                 ),
                 FloatingActionButton(
+                  heroTag: 'button9',
                   onPressed: () => password.text += '9',
                   backgroundColor: scheme.primary,
                   child: Text('9')
@@ -126,16 +135,19 @@ class PasswordPage extends StatelessWidget{
               mainAxisAlignment: .center,
               children: [
                 FloatingActionButton(
+                  heroTag: 'button#',
                   onPressed: () => password.text += '#',
                   backgroundColor: scheme.primary,
                   child: Text('#')
                 ),
                 FloatingActionButton(
+                  heroTag: 'button0',
                   onPressed: () => password.text += '0',
                   backgroundColor: scheme.primary,
                   child: Text('0')
                 ),
                 FloatingActionButton(
+                  heroTag: 'buttonBs',
                   onPressed: (){
                     final text = password.text;
                     final subText = text.length-1;
@@ -154,11 +166,13 @@ class PasswordPage extends StatelessWidget{
               crossAxisAlignment: .center,
               children: [
                 FloatingActionButton(
+                  heroTag: 'buttonFinger',
                   onPressed: (){},
                   backgroundColor: scheme.primary,
                   child: Icon(Icons.fingerprint)
                 ),
                 FloatingActionButton(
+                  heroTag: 'buttonCheck',
                   onPressed: ()=> checkPassword(context),
                   backgroundColor: scheme.primary,
                   child: Icon(Icons.check_circle_outline)

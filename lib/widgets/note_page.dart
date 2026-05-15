@@ -123,6 +123,7 @@ class _NotePageState extends State<NotePage> {
       floatingActionButton: Visibility(
         visible: !widget.viewModel.state.readOnly,
         child: FloatingActionButton(
+          heroTag: 'buttonCheck',
           onPressed: (){
             widget.viewModel.onAction(UpdateNote(
               title: titleController.text,
