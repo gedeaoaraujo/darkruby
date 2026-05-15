@@ -39,13 +39,14 @@ class _NotePageState extends State<NotePage> {
 
   @override
   Widget build(BuildContext context) {
+    final state = widget.viewModel.state;
     final scheme = Theme.of(context).colorScheme;
     return Scaffold(
       backgroundColor: scheme.secondaryContainer,
       appBar: AppBar(
         foregroundColor: scheme.onPrimary,
         backgroundColor: scheme.primary,
-        title: switch(widget.viewModel.state.readOnly){
+        title: switch(state.readOnly){
           true => Text('View Note'),
           false => Text('Edit Note'),
         },
@@ -55,7 +56,7 @@ class _NotePageState extends State<NotePage> {
             onPressed: (){},
           ),
           IconButton(
-            icon: switch(widget.viewModel.state.readOnly){
+            icon: switch(state.readOnly){
               true => Icon(Icons.edit),
               false => Icon(Icons.remove_red_eye),
             },
@@ -77,7 +78,7 @@ class _NotePageState extends State<NotePage> {
         child: Column(
           children: [
             TextField(
-              readOnly: widget.viewModel.state.readOnly,
+              readOnly: state.readOnly,
               controller: titleController,
               decoration: .new(
                 border: .none,
@@ -89,7 +90,7 @@ class _NotePageState extends State<NotePage> {
                 )
               )),
             TextField(
-              readOnly: widget.viewModel.state.readOnly,
+              readOnly: state.readOnly,
               controller: dateController,
               decoration: .new(
                 border: .none,
@@ -104,7 +105,7 @@ class _NotePageState extends State<NotePage> {
             Expanded(
               child: TextField(
                 maxLines: null,
-                readOnly: widget.viewModel.state.readOnly,
+                readOnly: state.readOnly,
                 controller: textController,
                 decoration: .new(
                   border: .none,
