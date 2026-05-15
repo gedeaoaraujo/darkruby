@@ -120,21 +120,22 @@ class _NotePageState extends State<NotePage> {
           ],
         ),
       ),
-      floatingActionButton:
-        widget.viewModel.state.readOnly == true ? null :
-          FloatingActionButton(
-            onPressed: (){
-              widget.viewModel.onAction(UpdateNote(
-                title: titleController.text,
-                date: dateController.text,
-                text: textController.text
-              ));
-              widget.viewModel.onAction(SaveNote());
-              widget.viewModel.onAction(ToggleReadOnly());
-            },
-            backgroundColor: scheme.primary,
-            child: Icon(Icons.check, color: scheme.onPrimary)
-          )
+      floatingActionButton: Visibility(
+        visible: !widget.viewModel.state.readOnly,
+        child: FloatingActionButton(
+          onPressed: (){
+            widget.viewModel.onAction(UpdateNote(
+              title: titleController.text,
+              date: dateController.text,
+              text: textController.text
+            ));
+            widget.viewModel.onAction(SaveNote());
+            widget.viewModel.onAction(ToggleReadOnly());
+          },
+          backgroundColor: scheme.primary,
+          child: Icon(Icons.check, color: scheme.onPrimary)
+        )
+      )
     );
   }
 }
