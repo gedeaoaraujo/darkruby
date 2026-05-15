@@ -74,7 +74,11 @@ class _HomePageState extends State<HomePage> {
         title: Text(widget.title),
         actions: [
           IconButton(
-            icon: Icon(Icons.sunny),
+            icon: switch(widget.viewModel.state.theme){
+              ThemeMode.light => Icon(Icons.dark_mode),
+              ThemeMode.dark => Icon(Icons.light_mode),
+              ThemeMode.system => Icon(Icons.light_mode)
+            },
             onPressed: (){
               widget.viewModel.onAction(ToggleTheme());
             }
