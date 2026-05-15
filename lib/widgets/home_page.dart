@@ -10,9 +10,8 @@ import 'package:flutter/material.dart';
 class HomePage extends StatefulWidget {
   final String title;
   final NotesViewmodel viewModel;
-  final TextEditingController searchController = .new();
 
-  HomePage({
+  const HomePage({
     super.key,
     required this.title,
     required this.viewModel
@@ -24,15 +23,17 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
+  final TextEditingController searchController = .new();
+
   Iterable<Note> get filteredNotes {
-    final text = widget.searchController.text;
+    final text = searchController.text;
     return widget.viewModel.state.notes
       .where((note) => note.containText(text));
   }
 
   @override
   void dispose() {
-    widget.searchController.dispose();
+    searchController.dispose();
     super.dispose();
   }
 
@@ -79,7 +80,7 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             icon: Icon(Icons.search),
             onPressed: (){
-              setState(()=> widget.searchController.text = '');
+              setState(()=> searchController.text = '');
               widget.viewModel.onAction(ToggleSearch());
             }
           ),
@@ -98,11 +99,8 @@ class _HomePageState extends State<HomePage> {
                 vertical: 8.0, horizontal: 24.0
               ),
               child: TextField(
-                controller: widget.searchController,
+                controller: searchController,
                 decoration: .new(hintText: 'Text to filter...'),
-                onChanged: (value){
-                  setState(()=> widget.searchController.text = value);
-                },
               ),
             ),
             Expanded(

@@ -2,14 +2,27 @@ import 'package:darkruby/notes_viewmodel.dart';
 import 'package:darkruby/note_intent.dart';
 import 'package:flutter/material.dart';
 
-class CreatePage extends StatelessWidget {
+class CreatePage extends StatefulWidget {
+  final NotesViewmodel viewModel;
+  const CreatePage({super.key, required this.viewModel});
+  
+  @override
+  State<CreatePage> createState() => _CreatePageState();
+}
 
-  late final NotesViewmodel viewModel;
+class _CreatePageState extends State<CreatePage> {
+
   final TextEditingController titleController = .new();
   final TextEditingController dateController = .new();
   final TextEditingController textController = .new();
 
-  CreatePage({super.key, required this.viewModel});
+  @override
+  void dispose() {
+    titleController.dispose();
+    dateController.dispose();
+    textController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +36,12 @@ class CreatePage extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.check),
             onPressed: (){
-              viewModel.onAction(UpdateNote(
+              widget.viewModel.onAction(UpdateNote(
                 title: titleController.text,
                 date: dateController.text,
                 text: textController.text
               ));
-              viewModel.onAction(SaveNote());
+              widget.viewModel.onAction(SaveNote());
               Navigator.pop(context);
             }
           )
@@ -41,9 +54,6 @@ class CreatePage extends StatelessWidget {
             TextField(
               readOnly: false,
               controller: titleController,
-              onChanged: (text){
-                titleController.text = text;
-              },
               decoration: .new(
                 border: .none,
                 labelText: 'Título',
@@ -51,9 +61,6 @@ class CreatePage extends StatelessWidget {
             TextField(
               readOnly: false,
               controller: dateController,
-              onChanged: (text){
-                dateController.text = text;
-              },
               decoration: .new(
                 border: .none,
                 labelText: 'Data',
@@ -63,9 +70,6 @@ class CreatePage extends StatelessWidget {
               child: TextField(
                 maxLines: null,
                 readOnly: false,
-                onChanged: (text){
-                  textController.text = text;
-                },
                 controller: textController,
                 decoration: .new(
                   border: .none,

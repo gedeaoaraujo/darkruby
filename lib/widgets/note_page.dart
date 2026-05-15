@@ -3,18 +3,11 @@ import 'package:darkruby/note_intent.dart';
 import 'package:darkruby/notes_viewmodel.dart';
 
 class NotePage extends StatefulWidget {
-
-  late final int noteId;
-  late final NotesViewmodel viewModel;
-  late final TextEditingController titleController;
-  late final TextEditingController dateController;
-  late final TextEditingController textController;
+  final int noteId;
+  final NotesViewmodel viewModel;
   
   NotePage({super.key, required this.noteId, required this.viewModel}){
     viewModel.onAction(SelectNote(noteId: noteId));
-    titleController = .new(text: viewModel.state.newNote?.title ?? '');
-    dateController = .new(text: viewModel.state.newNote?.date ?? '');
-    textController = .new(text: viewModel.state.newNote?.text ?? '');
   }
 
   @override
@@ -22,18 +15,25 @@ class NotePage extends StatefulWidget {
 }
 
 class _NotePageState extends State<NotePage> {
+  
+  late final TextEditingController titleController;
+  late final TextEditingController dateController;
+  late final TextEditingController textController;
 
   @override
   void initState() {
-    widget.viewModel.onAction(ToggleReadOnly(readOnly: true));
+    final note = widget.viewModel.state.newNote;
+    titleController = .new(text: note?.title ?? '');
+    dateController = .new(text: note?.date ?? '');
+    textController = .new(text: note?.text ?? '');
     super.initState();
   }
 
   @override
   void dispose() {
-    widget.titleController.dispose();
-    widget.dateController.dispose();
-    widget.textController.dispose();
+    titleController.dispose();
+    dateController.dispose();
+    textController.dispose();
     super.dispose();
   }
 
@@ -77,20 +77,14 @@ class _NotePageState extends State<NotePage> {
           children: [
             TextField(
               readOnly: widget.viewModel.state.readOnly,
-              controller: widget.titleController,
-              onChanged: (value) {
-                widget.titleController.text = value;
-              },
+              controller: titleController,
               decoration: .new(
                 border: .none,
                 labelText: 'Título',
               )),
             TextField(
               readOnly: widget.viewModel.state.readOnly,
-              controller: widget.dateController,
-              onChanged: (value) {
-                widget.dateController.text = value;
-              },
+              controller: dateController,
               decoration: .new(
                 border: .none,
                 labelText: 'Data',
@@ -100,10 +94,7 @@ class _NotePageState extends State<NotePage> {
               child: TextField(
                 maxLines: null,
                 readOnly: widget.viewModel.state.readOnly,
-                controller: widget.textController,
-                onChanged: (value) {
-                  widget.textController.text = value;
-                },
+                controller: textController,
                 decoration: .new(
                   border: .none,
                   labelText: 'Texto',
@@ -118,9 +109,9 @@ class _NotePageState extends State<NotePage> {
           FloatingActionButton(
             onPressed: (){
               widget.viewModel.onAction(UpdateNote(
-                title: widget.titleController.text,
-                date: widget.dateController.text,
-                text: widget.textController.text
+                title: titleController.text,
+                date: dateController.text,
+                text: textController.text
               ));
               widget.viewModel.onAction(SaveNote());
               widget.viewModel.onAction(ToggleReadOnly());
