@@ -82,6 +82,11 @@ class _NotePageState extends State<NotePage> {
               decoration: .new(
                 border: .none,
                 labelText: 'Título',
+                labelStyle: .new(
+                  color: scheme.primary,
+                  fontWeight: .w600,
+                  fontSize: 18,
+                )
               )),
             TextField(
               readOnly: widget.viewModel.state.readOnly,
@@ -89,6 +94,11 @@ class _NotePageState extends State<NotePage> {
               decoration: .new(
                 border: .none,
                 labelText: 'Data',
+                labelStyle: .new(
+                  color: scheme.primary, 
+                  fontWeight: .w600,
+                  fontSize: 18,
+                )
               )
             ),
             Expanded(
@@ -99,6 +109,11 @@ class _NotePageState extends State<NotePage> {
                 decoration: .new(
                   border: .none,
                   labelText: 'Texto',
+                  labelStyle: .new(
+                    color: scheme.primary,
+                    fontWeight: .w600,
+                    fontSize: 18,
+                  )
                 )
               ),
             ),

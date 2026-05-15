@@ -67,6 +67,14 @@ class _CreatePageState extends State<CreatePage> {
               decoration: .new(
                 border: .none,
                 labelText: 'Título',
+                floatingLabelBehavior: .always,
+                labelStyle: .new(
+                  color: scheme.primary, 
+                  fontWeight: .w600,
+                  fontSize: 18,
+
+                ),
+                hintText: 'Digite um título...',
               )),
             TextField(
               readOnly: false,
@@ -74,6 +82,13 @@ class _CreatePageState extends State<CreatePage> {
               decoration: .new(
                 border: .none,
                 labelText: 'Data',
+                floatingLabelBehavior: .always,
+                labelStyle: .new(
+                  color: scheme.primary, 
+                  fontWeight: .w600,
+                  fontSize: 18,
+                ),
+                hintText: 'Digite uma data...',
               )
             ),
             Expanded(
@@ -84,6 +99,13 @@ class _CreatePageState extends State<CreatePage> {
                 decoration: .new(
                   border: .none,
                   labelText: 'Texto',
+                  floatingLabelBehavior: .always,
+                  labelStyle: .new(
+                    color: scheme.primary,
+                    fontWeight: .w600,
+                    fontSize: 18,
+                  ),
+                  hintText: 'Digite um texto...',
                 )
               ),
             ),
