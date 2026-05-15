@@ -16,6 +16,7 @@ class CreatePage extends StatelessWidget {
     final scheme = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
+        foregroundColor: scheme.onPrimary,
         backgroundColor: scheme.primary,
         title: Text('Create Note'),
         actions: [
