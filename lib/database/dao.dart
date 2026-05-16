@@ -1,4 +1,4 @@
-import 'package:darkruby/sql_database.dart';
+import 'package:darkruby/database/sql_database.dart';
 import 'package:darkruby/types.dart';
 
 abstract class Dao {

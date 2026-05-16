@@ -1,5 +1,5 @@
 import 'package:darkruby/model/note.dart';
-import 'package:darkruby/note_dao.dart';
+import 'package:darkruby/database/note_dao.dart';
 
 class NotesRepository {
   final NoteDao _noteDao = .new();

@@ -1,4 +1,4 @@
-import 'package:darkruby/dao.dart';
+import 'package:darkruby/database/dao.dart';
 import 'package:darkruby/mappers.dart';
 import 'package:darkruby/model/note.dart';
 
