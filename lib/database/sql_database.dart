@@ -19,9 +19,9 @@ class SqlDatabase {
       (Database db, int version) async {
         String query = 'create table if not exists Notes(';
         query += 'id integer primary key autoincrement,';
-        query += 'title text not null,';
-        query += 'date text not null,';
-        query += 'text text not null)';
+        query += ' title text not null,';
+        query += ' date text not null,';
+        query += ' text text not null)';
         await db.execute(query);
       }
     ));
