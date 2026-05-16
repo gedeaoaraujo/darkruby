@@ -27,6 +27,7 @@ class App extends StatelessWidget {
               primaryContainer: Colors.white70,
               secondaryContainer: Colors.white
             ),
+            visualDensity: .adaptivePlatformDensity
           ),
           darkTheme: .new(
             colorScheme: .dark(
@@ -37,6 +38,7 @@ class App extends StatelessWidget {
               primaryContainer: const Color.fromARGB(255, 25, 25, 25),
               secondaryContainer: const Color.fromARGB(255, 20, 20, 20)
             ),
+            visualDensity: .adaptivePlatformDensity
           ),
           themeMode: viewModel.state.theme,
         );
