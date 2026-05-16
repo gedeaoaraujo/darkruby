@@ -12,11 +12,7 @@ class NotesViewmodel extends ChangeNotifier {
   NoteState get state => _state;
   
   NotesViewmodel() {
-    _load();
-  }
-
-  Future<void> _load() async {
-    await onAction(LoadNotes());
+    onAction(LoadNotes());
   }
 
   Future<void> onAction(NoteIntent intent) async {
@@ -35,9 +31,11 @@ class NotesViewmodel extends ChangeNotifier {
         _state = state.copyWith(notes: notes);
       case SaveNote():
         _repository.upsertNote(state.newNote!);
+        await onAction(LoadNotes());
       case DeleteNote(:final noteId):
         if (noteId == null) return;
         await _repository.deleteNoteById(noteId);
+        await onAction(LoadNotes());
       case SelectNote(:final noteId):
         if (noteId == null) return;
         final note = state.notes.firstWhere((e) => e.id == noteId);
