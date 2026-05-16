@@ -5,49 +5,28 @@ abstract class Dao {
 
   abstract final String tableName;
 
-  Future<void> upsert(dynamic entity) async {
-    final db = SqlDatabase.database;
-    await db.insert(
-      tableName,
-      entity.toMap(),
+  Future<void> upsert(AnyMap entity) async {
+    await SqlDatabase.database.insert(
+      tableName, entity,
       conflictAlgorithm: .replace
     );
   }
 
-  Future<AnyMap?> getById(dynamic entity) async {
-    final db = SqlDatabase.database;
-    final obj = entity.toMap();
-    final maps = await db.query(
-      tableName,
-      where: 'id = ?',
-      whereArgs: [obj.id], 
+  Future<AnyMap?> getById(AnyMap entity) async {
+    final maps = await SqlDatabase.database.query(
+      tableName, where: 'id = ?',
+      whereArgs: [entity['id']],
       columns: entity.keys.toList(),
     );
     return maps.firstOrNull;
   }
 
-  Future<List<AnyMap>> getAll() async {
-    final db = SqlDatabase.database;
-    final result = await db.query(tableName);
-    return result;
-  }
+  Future<List<AnyMap>> getAll() async =>
+    await SqlDatabase.database.query(tableName);
 
   Future<void> deleteById(int id) async {
-    final db = SqlDatabase.database;
-    await db.delete(
-      tableName, 
-      where: 'id = ?',
-      whereArgs: [id]
-    );
-  }
-
-  Future<void> update(dynamic entity) async {
-    final db = SqlDatabase.database;
-    await db.update(
-      tableName,
-      entity.toMap(),
-      where: 'id = ?',
-      whereArgs: [entity.id]
+    await SqlDatabase.database.delete(
+      tableName, where: 'id = ?', whereArgs: [id]
     );
   }
 
