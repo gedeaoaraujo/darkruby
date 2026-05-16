@@ -1,0 +1,1 @@
+typedef AnyMap = Map<String, Object?>;
