@@ -20,12 +20,12 @@ class ToggleReadOnly extends NoteIntent {
 }
 
 class SelectNote extends NoteIntent {
-  final int noteId;
+  final int? noteId;
   SelectNote({required this.noteId});
 }
 
 class DeleteNote extends NoteIntent {
-  final int noteId;
+  final int? noteId;
   DeleteNote({required this.noteId});
 }
 

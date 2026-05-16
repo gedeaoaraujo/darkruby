@@ -30,8 +30,10 @@ class NotesViewmodel extends ChangeNotifier {
       case SaveNote():
         _repository.upsertNote(state.newNote!);
       case DeleteNote(:final noteId):
-        _repository.deleteNoteById(noteId);
+        if (noteId == null) return;
+        await _repository.deleteNoteById(noteId);
       case SelectNote(:final noteId):
+        if (noteId == null) return;
         final note = state.notes.firstWhere((e) => e.id == noteId);
         _state = state.copyWith(newNote: note);
         return;
