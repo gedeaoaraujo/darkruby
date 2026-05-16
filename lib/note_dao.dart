@@ -13,7 +13,8 @@ class NoteDao extends Dao {
   }
 
   Future<Note?> getNoteById(int id) async {
-    final result = await super.getById(id);
+    final note = Note(id: id).toMap();
+    final result = await super.getById(note);
     return result?.toNote();
   }
 
