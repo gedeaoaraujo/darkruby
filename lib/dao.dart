@@ -5,7 +5,7 @@ abstract class Dao {
 
   abstract final String tableName;
 
-  Future<void> insert(dynamic entity) async {
+  Future<void> upsert(dynamic entity) async {
     final db = SqlDatabase.database;
     await db.insert(
       tableName,

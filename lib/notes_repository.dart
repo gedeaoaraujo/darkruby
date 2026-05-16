@@ -10,7 +10,7 @@ class NotesRepository {
   }
 
   Future<void> upsertNote(Note note) async {
-    await noteDao.insert(note);
+    await noteDao.upsert(note);
   }
 
   Future<void> deleteNoteById(int noteId) async {
