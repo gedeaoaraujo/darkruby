@@ -2,8 +2,7 @@ import 'package:darkruby/model/note.dart';
 import 'package:darkruby/note_dao.dart';
 
 class NotesRepository {
-  final NoteDao _noteDao;
-  NotesRepository(this._noteDao);
+  final NoteDao _noteDao = .new();
 
   Future<List<Note>> getAllNotes() {
     return _noteDao.getAllNotes();
