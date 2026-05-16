@@ -1,3 +1,5 @@
+import 'package:darkruby/types.dart';
+
 class Note {
   final int? id;
   final String title;
@@ -30,4 +32,11 @@ class Note {
       || date.toLowerCase().contains(txt.toLowerCase())
       || text.toLowerCase().contains(txt.toLowerCase());
   }
+
+  AnyMap toMap() => {
+    'id': id,
+    'date': date,
+    'text': text,
+    'title': title,
+  };
 }
