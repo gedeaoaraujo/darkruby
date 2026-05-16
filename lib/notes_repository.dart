@@ -1,23 +1,23 @@
-import 'package:darkruby/memory_database.dart';
 import 'package:darkruby/model/note.dart';
+import 'package:darkruby/note_dao.dart';
 
 class NotesRepository {
-  final _database = InMemoryDataBase();
-  NotesRepository();
+  final NoteDao noteDao;
+  NotesRepository(this.noteDao);
 
-  List<Note> getAllNotes() {
-    return _database.getAllNotes();
+  Future<List<Note>> getAllNotes() {
+    return noteDao.getAllNotes();
   }
 
-  void upsertNote(Note note){
-    _database.upsertNote(note);
+  Future<void> upsertNote(Note note) async {
+    await noteDao.insert(note);
   }
 
-  void deleteNoteById(int noteId) {
-    _database.deleteNoteById(noteId);
+  Future<void> deleteNoteById(int noteId) async {
+    await noteDao.deleteById(noteId);
   }
 
   bool checkPassword(String password) {
-    return _database.checkPassword(password);
+    return password == '';
   }
 }
