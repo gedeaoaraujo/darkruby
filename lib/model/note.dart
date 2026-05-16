@@ -1,13 +1,13 @@
 class Note {
-  final int id;
+  final int? id;
   final String title;
   final String date;
   final String text;
 
   bool get isInserted => id != 0;
 
-  const Note({
-    this.id = 0,
+  Note({
+    this.id,
     this.title = '', 
     this.date = '', 
     this.text = ''
