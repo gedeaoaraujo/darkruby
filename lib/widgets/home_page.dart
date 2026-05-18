@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
-  final NotesViewmodel viewModel;
+  final MainViewmodel viewModel;
 
   const HomePage({
     super.key,

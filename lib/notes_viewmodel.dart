@@ -2,19 +2,19 @@ import 'package:darkruby/model/note.dart';
 import 'package:darkruby/note_intent.dart';
 import 'package:darkruby/note_state.dart';
 import 'package:flutter/material.dart';
-import 'package:darkruby/notes_repository.dart';
+import 'package:darkruby/main_repository.dart';
 
-class NotesViewmodel extends ChangeNotifier {
-  final NotesRepository _repository = .new();
+class MainViewmodel extends ChangeNotifier {
+  final MainRepository _repository = .new();
   
-  NoteState _state = .new();
-  NoteState get state => _state;
+  MainState _state = .new();
+  MainState get state => _state;
   
-  NotesViewmodel() {
+  MainViewmodel() {
     onAction(LoadNotes());
   }
 
-  Future<void> onAction(NoteIntent intent) async {
+  Future<void> onAction(MainIntent intent) async {
     switch (intent) {
       case ToggleReadOnly(:final readOnly):
         _state = state.copyWith(readOnly: readOnly ?? !state.readOnly);

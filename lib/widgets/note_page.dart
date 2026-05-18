@@ -5,7 +5,7 @@ import 'package:darkruby/notes_viewmodel.dart';
 
 class NotePage extends StatefulWidget {
   final int? noteId;
-  final NotesViewmodel viewModel;
+  final MainViewmodel viewModel;
   
   NotePage({super.key, required this.noteId, required this.viewModel}){
     viewModel.onAction(SelectNote(noteId: noteId));

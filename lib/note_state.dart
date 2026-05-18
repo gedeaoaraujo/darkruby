@@ -1,7 +1,7 @@
 import 'package:darkruby/model/note.dart';
 import 'package:flutter/material.dart';
 
-class NoteState {
+class MainState {
   final bool search;
   final Note? newNote;
   final bool readOnly;
@@ -9,7 +9,7 @@ class NoteState {
   final ThemeMode theme;
   final List<Note> notes;
   
-  NoteState({
+  MainState({
     this.newNote,
     this.password = false,
     this.search = false,
@@ -18,14 +18,14 @@ class NoteState {
     this.theme = ThemeMode.dark,
   });
 
-  NoteState copyWith({
+  MainState copyWith({
     bool? search,
     Note? newNote,
     bool? readOnly,
     bool? password,
     ThemeMode? theme,
     List<Note>? notes,
-  }) => NoteState(
+  }) => MainState(
     theme: theme ?? this.theme,
     notes: notes ?? this.notes,
     search: search ?? this.search,

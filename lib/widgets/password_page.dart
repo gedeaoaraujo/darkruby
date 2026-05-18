@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class PasswordPage extends StatelessWidget{
   PasswordPage({super.key, required this.viewModel});
 
-  final NotesViewmodel viewModel;
+  final MainViewmodel viewModel;
   final TextEditingController password = .new();
 
   void checkPassword(BuildContext context){

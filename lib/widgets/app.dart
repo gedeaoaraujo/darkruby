@@ -7,7 +7,7 @@ const String _appName = 'Dark Ruby';
 class App extends StatelessWidget {
   App({super.key});
   
-  final viewModel = NotesViewmodel();
+  final viewModel = MainViewmodel();
 
   @override
   Widget build(BuildContext context) {

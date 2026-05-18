@@ -1,35 +1,35 @@
-sealed class NoteIntent {}
-class SaveNote extends NoteIntent {}
-class LoadNotes extends NoteIntent {}
-class CreateNote extends NoteIntent {}
-class ToggleTheme extends NoteIntent {}
+sealed class MainIntent {}
+class SaveNote extends MainIntent {}
+class LoadNotes extends MainIntent {}
+class CreateNote extends MainIntent {}
+class ToggleTheme extends MainIntent {}
 
-class CheckPassword extends NoteIntent {
+class CheckPassword extends MainIntent {
   final String password;
   CheckPassword(this.password);
 }
 
-class ToggleSearch extends NoteIntent {
+class ToggleSearch extends MainIntent {
   final bool? search;
   ToggleSearch({this.search});
 }
 
-class ToggleReadOnly extends NoteIntent {
+class ToggleReadOnly extends MainIntent {
   final bool? readOnly;
   ToggleReadOnly({this.readOnly});
 }
 
-class SelectNote extends NoteIntent {
+class SelectNote extends MainIntent {
   final int? noteId;
   SelectNote({required this.noteId});
 }
 
-class DeleteNote extends NoteIntent {
+class DeleteNote extends MainIntent {
   final int? noteId;
   DeleteNote({required this.noteId});
 }
 
-class UpdateNote extends NoteIntent {
+class UpdateNote extends MainIntent {
   String? title, date, text;
   UpdateNote({this.title, this.date, this.text});
 }

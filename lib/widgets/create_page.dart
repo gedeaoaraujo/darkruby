@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class CreatePage extends StatefulWidget {
-  final NotesViewmodel viewModel;
+  final MainViewmodel viewModel;
   const CreatePage({super.key, required this.viewModel});
   
   @override
