@@ -20,6 +20,8 @@ class _PasswordPageState extends State<PasswordPage> {
 
   void checkPassword(BuildContext context){
     widget.viewModel.onAction(CheckPassword(password.text));
+    password.text = '';
+  }
 
   void checkBiometry() async {
     final service = BiometricService();
@@ -206,7 +208,7 @@ class _PasswordPageState extends State<PasswordPage> {
               children: [
                 FloatingActionButton(
                   heroTag: 'buttonFinger',
-                  onPressed: (){},
+                  onPressed: ()=> checkBiometry(),
                   backgroundColor: scheme.primary,
                   child: Icon(Icons.fingerprint)
                 ),
