@@ -23,6 +23,14 @@ class SqlDatabase {
         query += ' date text not null,';
         query += ' text text not null)';
         await db.execute(query);
+
+        query = 'create table if not exists Password(';
+        query += 'id integer primary key autoincrement,';
+        query += ' password text not null)';
+        await db.execute(query);
+
+        query = "insert into Password values (null, '000');";
+        await db.execute(query);
       }
     ));
   }
