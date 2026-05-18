@@ -1,3 +1,4 @@
+import 'package:darkruby/biometry.dart';
 import 'package:darkruby/extensions.dart';
 import 'package:darkruby/note_intent.dart';
 import 'package:darkruby/notes_viewmodel.dart';
@@ -19,6 +20,21 @@ class _PasswordPageState extends State<PasswordPage> {
 
   void checkPassword(BuildContext context){
     widget.viewModel.onAction(CheckPassword(password.text));
+
+  void checkBiometry() async {
+    final service = BiometricService();
+    final success = await service.authenticate();
+    if (success.not() || !mounted) return;
+    
+    // !mounted is necessary    
+    Navigator.pushReplacement(
+      context, MaterialPageRoute(
+        builder: (_) => HomePage(
+          title: 'Dark Ruby',
+          viewModel: widget.viewModel,
+        ),
+      ),
+    );
   }
 
   @override
