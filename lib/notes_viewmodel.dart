@@ -47,7 +47,7 @@ class MainViewmodel extends ChangeNotifier {
           ? ThemeMode.dark : ThemeMode.light;
         _state = state.copyWith(theme: theme);
       case CheckPassword(:final password):
-        final result = _repository.checkPassword(password);
+        final result = await _repository.checkPassword(password);
         _state = _state.copyWith(password: result);
     }
     notifyListeners();
