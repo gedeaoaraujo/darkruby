@@ -1,25 +1,46 @@
+import 'package:darkruby/extensions.dart';
 import 'package:darkruby/note_intent.dart';
 import 'package:darkruby/notes_viewmodel.dart';
 import 'package:darkruby/widgets/home_page.dart';
 import 'package:flutter/material.dart';
 
-class PasswordPage extends StatelessWidget{
-  PasswordPage({super.key, required this.viewModel});
-
+class PasswordPage extends StatefulWidget{
   final MainViewmodel viewModel;
+  const PasswordPage({super.key, required this.viewModel});
+
+  @override
+  State<PasswordPage> createState() => _PasswordPageState();
+}
+
+class _PasswordPageState extends State<PasswordPage> {
+  
+  late final VoidCallback _listener;
   final TextEditingController password = .new();
 
   void checkPassword(BuildContext context){
-    viewModel.onAction(CheckPassword(password.text));
-    
-    if (viewModel.state.password){
-      Navigator.pushReplacement(context, MaterialPageRoute(
+    widget.viewModel.onAction(CheckPassword(password.text));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _listener = () {
+        if (widget.viewModel.state.password.not()) return;
+        Navigator.pushReplacement(context, MaterialPageRoute(
         builder: (context) => HomePage(
           title: 'Dark Ruby',
-          viewModel: viewModel
+          viewModel: widget.viewModel
         )
       ));
-    }
+    };
+    widget.viewModel.addListener(_listener);
+  }
+
+  @override
+  void dispose() {
+    widget.viewModel.removeListener(_listener);
+    password.dispose();
+    super.dispose();
   }
 
   @override
