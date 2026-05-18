@@ -149,9 +149,11 @@ class PasswordPage extends StatelessWidget{
                 FloatingActionButton(
                   heroTag: 'buttonBs',
                   onPressed: (){
-                    final text = password.text;
-                    final subText = text.length-1;
-                    password.text = text.substring(0, subText);
+                    if (password.text.isNotEmpty){
+                      final text = password.text;
+                      final subText = text.length-1;
+                      password.text = text.substring(0, subText);
+                    }
                   },
                   backgroundColor: scheme.primary,
                   child: Icon(Icons.backspace)
