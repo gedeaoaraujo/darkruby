@@ -18,11 +18,10 @@ class _SettingsPageState extends State<SettingsPage> {
   final TextEditingController _confirm = .new();
   final TextEditingController _password = .new();
 
-  void openPassDialog(){
-    showDialog(context: context, builder: (BuildContext context) {
-      return PasswordDialog(password: _password, confirm: _confirm);
-    });
-  }
+  void openPassDialog() => showDialog(
+    context: context, builder: (BuildContext context) =>
+      PasswordDialog(password: _password, confirm: _confirm)
+  );
 
   @override
   Widget build(BuildContext context) {
