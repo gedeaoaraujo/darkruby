@@ -15,12 +15,9 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   int? _selectedValue = 0;
 
-  final TextEditingController _confirm = .new();
-  final TextEditingController _password = .new();
-
   void openPassDialog() => showDialog(
-    context: context, builder: (BuildContext context) =>
-      PasswordDialog(password: _password, confirm: _confirm)
+    context: context, 
+    builder: (BuildContext context) => PasswordDialog()
   );
 
   @override
