@@ -35,6 +35,7 @@ class _PasswordDialogState extends State<PasswordDialog> {
           spacing: 32,
           children: [
             TextField(
+              obscureText: true,
               controller: _password,
               decoration: .new(
                 labelText: 'Password',
@@ -42,6 +43,7 @@ class _PasswordDialogState extends State<PasswordDialog> {
               ),
             ),
             TextField(
+              obscureText: true,
               controller: _confirm,
               decoration: .new(
                 labelText: 'Confirm password',
