@@ -49,6 +49,9 @@ class MainViewmodel extends ChangeNotifier {
       case CheckPassword(:final password):
         final result = await _repository.checkPassword(password);
         _state = _state.copyWith(password: result);
+      case SavePassword(:final password):
+        await _repository.updatePassword(password);
+        return;
     }
     notifyListeners();
   }

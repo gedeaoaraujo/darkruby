@@ -27,4 +27,10 @@ class MainRepository {
     final pass = result.first['password'] as String?;
     return password == pass;
   }
+
+  Future<void> updatePassword(String password) async {
+    await _passwordDao.upsert({
+      'id': 1, 'password': password
+    });
+  }
 }

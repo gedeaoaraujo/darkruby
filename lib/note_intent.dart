@@ -4,6 +4,11 @@ class LoadNotes extends MainIntent {}
 class CreateNote extends MainIntent {}
 class ToggleTheme extends MainIntent {}
 
+class SavePassword extends MainIntent {
+  final String password;
+  SavePassword(this.password);
+}
+
 class CheckPassword extends MainIntent {
   final String password;
   CheckPassword(this.password);
