@@ -1,5 +1,6 @@
 import 'package:darkruby/note_intent.dart';
 import 'package:darkruby/notes_viewmodel.dart';
+import 'package:darkruby/widgets/password_dialog.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -13,6 +14,15 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   int? _selectedValue = 0;
+
+  final TextEditingController _confirm = .new();
+  final TextEditingController _password = .new();
+
+  void openPassDialog(){
+    showDialog(context: context, builder: (BuildContext context) {
+      return PasswordDialog(password: _password, confirm: _confirm);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +73,10 @@ class _SettingsPageState extends State<SettingsPage> {
             Divider(color: scheme.onSecondary),
             
             Text('Password', style: .new(color: scheme.primary, fontSize: 18)),
-            Text('Modify Password', style: .new(fontSize: 16)),
+            ElevatedButton(
+              onPressed: () => openPassDialog(),
+              child: Text('Modify Password', style: .new(fontSize: 16)),
+            ),
             Divider(color: scheme.onSecondary),
             
             Text('Backup', style: .new(color: scheme.primary, fontSize: 18)),
