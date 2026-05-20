@@ -42,14 +42,14 @@ class _SettingsPageState extends State<SettingsPage> {
                   RadioListTile<int>(
                     value: 0, 
                     minTileHeight: 0,
-                    horizontalTitleGap: 0,
+                    horizontalTitleGap: 8,
                     title: const Text('Dark'),
                     contentPadding: EdgeInsets.all(0),
                   ),
                   RadioListTile<int>(
                     value: 1, 
                     minTileHeight: 0,
-                    horizontalTitleGap: 0,
+                    horizontalTitleGap: 8,
                     title: const Text('Light'),
                     contentPadding: EdgeInsets.all(0),
                   ),
