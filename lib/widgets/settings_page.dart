@@ -17,7 +17,9 @@ class _SettingsPageState extends State<SettingsPage> {
 
   void openPassDialog() => showDialog(
     context: context, 
-    builder: (BuildContext context) => PasswordDialog()
+    builder: (BuildContext context) => PasswordDialog((password){
+      widget.viewModel.onAction(SavePassword(password));
+    })
   );
 
   @override

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class PasswordDialog extends StatefulWidget {
-  const PasswordDialog({super.key});
+  final Function(String) onUpdatePass;
+  const PasswordDialog(this.onUpdatePass, {super.key});
 
   @override
   State<PasswordDialog> createState() => _PasswordDialogState();
@@ -19,6 +20,8 @@ class _PasswordDialogState extends State<PasswordDialog> {
     
     if (showError) return;
     Navigator.pop(context);
+
+    widget.onUpdatePass(_password.text);
   }
 
   @override
