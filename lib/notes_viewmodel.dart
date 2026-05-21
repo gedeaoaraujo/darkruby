@@ -1,3 +1,4 @@
+import 'package:darkruby/extensions.dart';
 import 'package:darkruby/model/note.dart';
 import 'package:darkruby/note_intent.dart';
 import 'package:darkruby/note_state.dart';
@@ -42,9 +43,9 @@ class MainViewmodel extends ChangeNotifier {
         return;
       case ToggleSearch(:final search):
         _state = state.copyWith(search: search ?? !state.search);
-      case ToggleTheme():
-        final theme = state.theme == ThemeMode.light 
-          ? ThemeMode.dark : ThemeMode.light;
+      case ToggleTheme(:final dark):
+        final isLight = dark?.not() ?? state.theme.isLight;
+        final theme = isLight ? ThemeMode.dark : ThemeMode.light;
         _state = state.copyWith(theme: theme);
       case CheckPassword(:final password):
         final result = await _repository.checkPassword(password);

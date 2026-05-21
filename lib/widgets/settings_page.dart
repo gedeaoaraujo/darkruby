@@ -13,7 +13,6 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  int? _selectedValue = 0;
 
   void openPassDialog() => showDialog(
     context: context, 
@@ -43,23 +42,22 @@ class _SettingsPageState extends State<SettingsPage> {
               fontWeight: .w500,
               color: scheme.primary,
             )),
-            RadioGroup<int>(
-              groupValue: _selectedValue,
-              onChanged: (int? value) {
-                widget.viewModel.onAction(ToggleTheme());
-                setState(() => _selectedValue = value);
+            RadioGroup<bool>(
+              groupValue: widget.viewModel.state.theme.isLight,
+              onChanged: (bool? dark) {
+                widget.viewModel.onAction(ToggleTheme(dark: dark));
               },
               child: Column(
                 children: <Widget>[
-                  RadioListTile<int>(
-                    value: 0, 
+                  RadioListTile<bool>(
+                    value: false, 
                     minTileHeight: 0,
                     horizontalTitleGap: 8,
                     title: const Text('Dark'),
                     contentPadding: EdgeInsets.all(0),
                   ),
-                  RadioListTile<int>(
-                    value: 1, 
+                  RadioListTile<bool>(
+                    value: true, 
                     minTileHeight: 0,
                     horizontalTitleGap: 8,
                     title: const Text('Light'),
