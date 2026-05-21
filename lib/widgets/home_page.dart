@@ -25,10 +25,10 @@ class _HomePageState extends State<HomePage> {
 
   final TextEditingController searchController = .new();
 
-  Iterable<Note> get filteredNotes {
+  List<Note> get filteredNotes {
     final text = searchController.text;
     return widget.viewModel.state.notes
-      .where((note) => note.containText(text));
+      .where((note) => note.containText(text)).toList();
   }
 
   @override
@@ -113,13 +113,13 @@ class _HomePageState extends State<HomePage> {
               child: ListView.builder(
                 itemCount: notes.length,
                 itemBuilder: (_, index){
-                  final item = notes.elementAt(index);
+                  final item = notes[index];
                   return Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 8.0, vertical: 2.0
                     ),
                     child: ListItem(
-                      key: ValueKey('$index'),
+                      key: ValueKey(item.id),
                       note: item, () => goToNotePage(item)
                     ),
                   );
