@@ -79,6 +79,7 @@ class _PasswordPageState extends State<PasswordPage> {
               width: 200,
               child: TextField(
                 enabled: false,
+                obscureText: true,
                 cursorColor: scheme.onPrimary,
                 controller: password,
                 decoration: .new(
