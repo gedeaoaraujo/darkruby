@@ -38,7 +38,10 @@ class _SettingsPageState extends State<SettingsPage> {
           mainAxisSize: .max,
           crossAxisAlignment: .start,
           children: [
-            Text('Theme', style: .new(color: scheme.primary, fontSize: 18)),
+            Text('Theme', style: .new(
+              fontSize: 18,
+              color: scheme.primary,
+            )),
             RadioGroup<int>(
               groupValue: _selectedValue,
               onChanged: (int? value) {
@@ -66,20 +69,54 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             Divider(color: scheme.onSecondary),
 
-            Text('Language', style: .new(color: scheme.primary, fontSize: 18)),
-            Text('Select Language', style: .new(fontSize: 16)),
+            Text('Language', style: .new(
+              fontSize: 18,
+              color: scheme.primary,
+            )),
+            TextButton(
+              onPressed: (){},
+              style: .new(
+                padding: .all(.zero)
+              ),
+              child: Text(
+                'Select Language',
+                style: .new(
+                  fontSize: 16,
+                  fontWeight: .normal,
+                  color: scheme.onSurface,
+                )
+              ),
+            ),
             Divider(color: scheme.onSecondary),
             
-            Text('Password', style: .new(color: scheme.primary, fontSize: 18)),
+            Text('Password', style: .new(
+              fontSize: 18,
+              color: scheme.primary, 
+            )),
             TextButton(
               onPressed: () => openPassDialog(),
               style: .new(
-                elevation: .all(0),
-                padding: .all(.zero),
-                alignment: .centerStart,
+                padding: .all(.zero)
+              ),
+              child: Text('Modify Password', style: .new(
+                fontSize: 16,
+                fontWeight: .normal,
+                color: scheme.onSurface,
+              )),
+            ),
+            Divider(color: scheme.onSecondary),
+            
+            Text('Backup', style: .new(
+              fontSize: 18,
+              color: scheme.primary,
+            )),
+            TextButton(
+              onPressed: (){},
+              style: .new(
+                padding: .all(.zero)
               ),
               child: Text(
-                'Modify Password',
+                'Export Notes',
                 style: .new(
                   fontSize: 16,
                   color: scheme.onSurface,
@@ -87,11 +124,20 @@ class _SettingsPageState extends State<SettingsPage> {
                 )
               ),
             ),
-            Divider(color: scheme.onSecondary),
-            
-            Text('Backup', style: .new(color: scheme.primary, fontSize: 18)),
-            Text('Export Notes', style: .new(fontSize: 16)),
-            Text('Import Notes', style: .new(fontSize: 16)),
+            TextButton(
+              onPressed: (){},
+              style: .new(
+                padding: .all(.zero)
+              ),
+              child: Text(
+                'Import Notes',
+                style: .new(
+                  fontSize: 16,
+                  color: scheme.onSurface,
+                  fontWeight: .normal,
+                )
+              ),
+            ),
           ],
         ),
       )
