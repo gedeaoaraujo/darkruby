@@ -40,6 +40,7 @@ class _SettingsPageState extends State<SettingsPage> {
           children: [
             Text('Theme', style: .new(
               fontSize: 18,
+              fontWeight: .w500,
               color: scheme.primary,
             )),
             RadioGroup<int>(
@@ -71,6 +72,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
             Text('Language', style: .new(
               fontSize: 18,
+              fontWeight: .w500,
               color: scheme.primary,
             )),
             TextButton(
@@ -91,6 +93,7 @@ class _SettingsPageState extends State<SettingsPage> {
             
             Text('Password', style: .new(
               fontSize: 18,
+              fontWeight: .w500,
               color: scheme.primary, 
             )),
             TextButton(
@@ -108,6 +111,7 @@ class _SettingsPageState extends State<SettingsPage> {
             
             Text('Backup', style: .new(
               fontSize: 18,
+              fontWeight: .w500,
               color: scheme.primary,
             )),
             TextButton(
