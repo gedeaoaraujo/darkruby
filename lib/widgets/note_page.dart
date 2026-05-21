@@ -2,6 +2,7 @@ import 'package:darkruby/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:darkruby/note_intent.dart';
 import 'package:darkruby/notes_viewmodel.dart';
+import 'package:share_plus/share_plus.dart';
 
 class NotePage extends StatefulWidget {
   final int? noteId;
@@ -38,6 +39,13 @@ class _NotePageState extends State<NotePage> {
     super.dispose();
   }
 
+  String get bodyText {
+    final title = titleController.text;
+    final date = dateController.text;
+    final text = textController.text;
+    return '$title\n''$date\n''$text';
+  }
+
   @override
   Widget build(BuildContext context) {
     final state = widget.viewModel.state;
@@ -54,7 +62,14 @@ class _NotePageState extends State<NotePage> {
         actions: [
           IconButton(
             icon: Icon(Icons.share),
-            onPressed: (){},
+            onPressed: () async {
+              await SharePlus.instance.share(
+                ShareParams(
+                  title: titleController.text,
+                  text: bodyText,
+                ),
+              );
+            },
           ),
           IconButton(
             icon: switch(state.readOnly){
