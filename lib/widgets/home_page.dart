@@ -86,7 +86,7 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             icon: Icon(Icons.search),
             onPressed: (){
-              setState(()=> searchController.text = '');
+              searchController.clear(); setState((){});
               widget.viewModel.onAction(ToggleSearch());
             }
           ),
