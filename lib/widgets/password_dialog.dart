@@ -33,7 +33,7 @@ class _PasswordDialogState extends State<PasswordDialog> {
         child: const Text('Modify Password'),
       ),
       content: SizedBox(
-        height: 180,
+        height: 160,
         child: Column(
           spacing: 32,
           children: [
