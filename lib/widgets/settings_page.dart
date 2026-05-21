@@ -71,11 +71,21 @@ class _SettingsPageState extends State<SettingsPage> {
             Divider(color: scheme.onSecondary),
             
             Text('Password', style: .new(color: scheme.primary, fontSize: 18)),
-            ElevatedButton(
-              style: .new(alignment: .centerStart, padding: .all(.zero)),
+            TextButton(
               onPressed: () => openPassDialog(),
-              child: Text('Modify Password', 
-              style: .new(fontSize: 16, color: scheme.onPrimary)),
+              style: .new(
+                elevation: .all(0),
+                padding: .all(.zero),
+                alignment: .centerStart,
+              ),
+              child: Text(
+                'Modify Password',
+                style: .new(
+                  fontSize: 16,
+                  color: scheme.onSurface,
+                  fontWeight: .normal,
+                )
+              ),
             ),
             Divider(color: scheme.onSecondary),
             
