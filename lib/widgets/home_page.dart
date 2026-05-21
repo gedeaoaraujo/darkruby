@@ -23,12 +23,19 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  final TextEditingController searchController = .new();
+  late final TextEditingController searchController;
 
   List<Note> get filteredNotes {
     final text = searchController.text;
     return widget.viewModel.state.notes
       .where((note) => note.containText(text)).toList();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    searchController = .new()
+      ..addListener(() => setState((){}));
   }
 
   @override
