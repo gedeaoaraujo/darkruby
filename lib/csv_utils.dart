@@ -6,6 +6,7 @@ import 'package:darkruby/types.dart';
 import 'package:path/path.dart';
 import 'package:archive/archive.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:file_picker/file_picker.dart';
 
 Future<void> exportNotesCsvZip(List<AnyMap> list) async {
   try {
@@ -65,4 +66,24 @@ Future<void> importNoteCsvZip() async {
     print(error);
   }
     
+}
+
+Future<String> selectFile() async {
+  final result = await FilePicker.pickFiles(
+    type: FileType.custom,
+    allowedExtensions: ['zip']
+  );
+  if (result == null) {
+    print('File section canceled');
+    return '';
+  }
+
+  final path = result.files.single.path;
+  if (path != null) {
+    final file = File(path);
+    print('File selected: ${file.path}');
+    return file.path;
+  }
+
+  return '';
 }
