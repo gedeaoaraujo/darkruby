@@ -15,8 +15,8 @@ class ListItem extends StatelessWidget {
     final scheme = Theme.of(context).colorScheme;
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
+        padding: EdgeInsetsGeometry.all(8),
         backgroundColor: scheme.primaryContainer,
-        minimumSize: const .new(.infinity, 0),
         shape: RoundedRectangleBorder(borderRadius: .circular(8))
       ),
       onPressed: () => goToNotePage(),
