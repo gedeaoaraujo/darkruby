@@ -2,6 +2,8 @@ sealed class MainIntent {}
 class SaveNote extends MainIntent {}
 class LoadNotes extends MainIntent {}
 class CreateNote extends MainIntent {}
+class ExportNotes extends MainIntent {}
+class ImportNotes extends MainIntent {}
 
 class ToggleTheme extends MainIntent {
   final bool? dark;

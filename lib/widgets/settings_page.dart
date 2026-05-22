@@ -114,8 +114,8 @@ class _SettingsPageState extends State<SettingsPage> {
               color: scheme.primary,
             )),
             TextButton(
-              onPressed: () async {
-                await exportNotesCsvZip();
+              onPressed: () {
+                widget.viewModel.onAction(ExportNotes());
               },
               style: .new(
                 padding: .all(.zero)
@@ -131,7 +131,7 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             TextButton(
               onPressed: (){
-                importNoteCsvZip();
+                widget.viewModel.onAction(ImportNotes());
               },
               style: .new(
                 padding: .all(.zero)

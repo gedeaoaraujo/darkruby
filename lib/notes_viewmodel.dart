@@ -53,6 +53,12 @@ class MainViewmodel extends ChangeNotifier {
       case SavePassword(:final password):
         await _repository.updatePassword(password);
         return;
+      case ExportNotes():
+        await _repository.exportNotes();
+        return;
+      case ImportNotes():
+        await _repository.importNotes();
+        return;
     }
     notifyListeners();
   }
