@@ -1,3 +1,4 @@
+import 'package:darkruby/csv_utils.dart';
 import 'package:darkruby/database/dao.dart';
 import 'package:darkruby/mappers.dart';
 import 'package:darkruby/model/note.dart';
@@ -16,6 +17,14 @@ class NoteDao extends Dao {
     final note = Note(id: id).toMap();
     final result = await super.getById(note);
     return result?.toNote();
+  }
+
+  Future<void> exportNotes() async {
+    await exportNotesCsvZip();
+  }
+
+  Future<void> importNotes() async {
+    await importNoteCsvZip();
   }
 
 }

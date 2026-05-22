@@ -33,4 +33,12 @@ class MainRepository {
       'id': 1, 'password': password
     });
   }
+
+  Future<void> exportNotes() async {
+    await _noteDao.exportNotes();
+  }
+
+  Future<void> importNotes() async {
+    await _noteDao.importNotes();
+  }
 }
