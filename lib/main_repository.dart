@@ -38,7 +38,7 @@ class MainRepository {
     await _noteDao.exportNotes();
   }
 
-  Future<void> importNotes() async {
-    await _noteDao.importNotes();
+  Future<void> importNotes(String path) async {
+    await _noteDao.importNotes(path);
   }
 }

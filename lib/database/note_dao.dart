@@ -24,8 +24,8 @@ class NoteDao extends Dao {
     await exportNotesCsvZip(notes);
   }
 
-  Future<void> importNotes() async {
-    await importNoteCsvZip();
+  Future<void> importNotes(String path) async {
+    await importNoteCsvZip(path);
   }
 
 }

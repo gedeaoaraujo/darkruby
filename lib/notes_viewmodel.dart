@@ -56,8 +56,8 @@ class MainViewmodel extends ChangeNotifier {
       case ExportNotes():
         await _repository.exportNotes();
         return;
-      case ImportNotes():
-        await _repository.importNotes();
+      case ImportNotes(:final path):
+        await _repository.importNotes(path);
         return;
     }
     notifyListeners();

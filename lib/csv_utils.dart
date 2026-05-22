@@ -37,11 +37,8 @@ Future<void> exportNotesCsvZip(List<AnyMap> list) async {
   }
 }
 
-Future<void> importNoteCsvZip() async {
+Future<void> importNoteCsvZip(String path) async {
   try {
-    final dir = await getDownloadsDirectory();
-    final path = join(dir!.path, 'notes-123456.zip');
-    
     final zipFile = File(path);
     final zipBytes = await zipFile.readAsBytes();
     final archive = ZipDecoder().decodeBytes(zipBytes);

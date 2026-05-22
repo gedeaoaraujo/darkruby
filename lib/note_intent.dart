@@ -3,7 +3,11 @@ class SaveNote extends MainIntent {}
 class LoadNotes extends MainIntent {}
 class CreateNote extends MainIntent {}
 class ExportNotes extends MainIntent {}
-class ImportNotes extends MainIntent {}
+
+class ImportNotes extends MainIntent {
+  final String path;
+  ImportNotes(this.path);
+}
 
 class ToggleTheme extends MainIntent {
   final bool? dark;

@@ -1,3 +1,4 @@
+import 'package:darkruby/csv_utils.dart';
 import 'package:darkruby/note_intent.dart';
 import 'package:darkruby/notes_viewmodel.dart';
 import 'package:darkruby/widgets/password_dialog.dart';
@@ -20,6 +21,12 @@ class _SettingsPageState extends State<SettingsPage> {
       widget.viewModel.onAction(SavePassword(password));
     })
   );
+
+  void importNotes() async {
+    final path = await selectFile();
+    if (path.isEmpty) return;
+    widget.viewModel.onAction(ImportNotes(path));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -135,9 +142,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
             ),
             TextButton(
-              onPressed: (){
-                widget.viewModel.onAction(ImportNotes());
-              },
+              onPressed: importNotes,
               style: TextButton.styleFrom(
                 padding: EdgeInsetsGeometry.all(8),
                 backgroundColor: scheme.primary.withAlpha(50),
