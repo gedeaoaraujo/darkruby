@@ -113,6 +113,7 @@ class _HomePageState extends State<HomePage> {
                 vertical: 8.0, horizontal: 24.0
               ),
               child: TextField(
+                autofocus: true,
                 controller: searchController,
                 decoration: .new(hintText: 'Text to filter...'),
               ),
