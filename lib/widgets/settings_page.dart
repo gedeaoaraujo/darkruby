@@ -75,8 +75,10 @@ class _SettingsPageState extends State<SettingsPage> {
             )),
             TextButton(
               onPressed: (){},
-              style: .new(
-                padding: .all(.zero)
+              style: TextButton.styleFrom(
+                padding: EdgeInsetsGeometry.all(8),
+                backgroundColor: scheme.primary.withAlpha(50),
+                shape: RoundedRectangleBorder(borderRadius: .circular(8))
               ),
               child: Text(
                 'Select Language',
@@ -96,8 +98,10 @@ class _SettingsPageState extends State<SettingsPage> {
             )),
             TextButton(
               onPressed: () => openPassDialog(),
-              style: .new(
-                padding: .all(.zero)
+              style: TextButton.styleFrom(
+                padding: EdgeInsetsGeometry.all(8),
+                backgroundColor: scheme.primary.withAlpha(50),
+                shape: RoundedRectangleBorder(borderRadius: .circular(8))
               ),
               child: Text('Modify Password', style: .new(
                 fontSize: 16,
@@ -116,8 +120,10 @@ class _SettingsPageState extends State<SettingsPage> {
               onPressed: () {
                 widget.viewModel.onAction(ExportNotes());
               },
-              style: .new(
-                padding: .all(.zero)
+              style: TextButton.styleFrom(
+                padding: EdgeInsetsGeometry.all(8),
+                backgroundColor: scheme.primary.withAlpha(50),
+                shape: RoundedRectangleBorder(borderRadius: .circular(8))
               ),
               child: Text(
                 'Export Notes',
@@ -132,8 +138,10 @@ class _SettingsPageState extends State<SettingsPage> {
               onPressed: (){
                 widget.viewModel.onAction(ImportNotes());
               },
-              style: .new(
-                padding: .all(.zero)
+              style: TextButton.styleFrom(
+                padding: EdgeInsetsGeometry.all(8),
+                backgroundColor: scheme.primary.withAlpha(50),
+                shape: RoundedRectangleBorder(borderRadius: .circular(8))
               ),
               child: Text(
                 'Import Notes',
