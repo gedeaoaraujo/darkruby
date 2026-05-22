@@ -1,3 +1,4 @@
+import 'package:darkruby/csv_utils.dart';
 import 'package:darkruby/note_intent.dart';
 import 'package:darkruby/notes_viewmodel.dart';
 import 'package:darkruby/widgets/password_dialog.dart';
@@ -113,7 +114,9 @@ class _SettingsPageState extends State<SettingsPage> {
               color: scheme.primary,
             )),
             TextButton(
-              onPressed: (){},
+              onPressed: () async {
+                await exportNotesCsvZip();
+              },
               style: .new(
                 padding: .all(.zero)
               ),
@@ -127,7 +130,9 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
             ),
             TextButton(
-              onPressed: (){},
+              onPressed: (){
+                importNoteCsvZip();
+              },
               style: .new(
                 padding: .all(.zero)
               ),
