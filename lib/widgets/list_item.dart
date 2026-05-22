@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 class ListItem extends StatelessWidget {
   final Note note;
-  final void Function() goToNotePage;
+  final void Function() onClickNote;
 
   const ListItem(
-    this.goToNotePage,
+    this.onClickNote,
     {super.key, required this.note}
   );
 
@@ -19,7 +19,7 @@ class ListItem extends StatelessWidget {
         backgroundColor: scheme.primaryContainer,
         shape: RoundedRectangleBorder(borderRadius: .circular(8))
       ),
-      onPressed: () => goToNotePage(),
+      onPressed: onClickNote,
       child: SizedBox(
         width: .infinity,
         child: Padding(
