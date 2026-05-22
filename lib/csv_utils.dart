@@ -51,12 +51,16 @@ Future<void> importNoteCsvZip(String path) async {
         dynamicTyping: true,
         parseHeaders: true
       ).decode(decoded))
-      .map((notes) => notes.map((data)=> Note(
-        id: data[0], title: data[1],
-        date: data[2], text: data[3]
-      )).toList())
+      .map((notes) => notes.map((data){
+        try {
+          return Note(
+            id: null, title: data[1],
+            date: data[2], text: data[3]
+          );
+        } catch(_){}
+      }).toList())
       .expand((notes) => notes)
-      .toList();
+      .nonNulls.toList();
 
     print(notes);
   } catch (error) {
