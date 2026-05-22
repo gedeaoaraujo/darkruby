@@ -45,6 +45,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void goToNotePage(Note item) {
+    searchController.clear();
     widget.viewModel.onAction(ToggleSearch(search: false));
     widget.viewModel.onAction(ToggleReadOnly(readOnly: true));
     Navigator.push(context, MaterialPageRoute<void>(
