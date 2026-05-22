@@ -2,18 +2,16 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:csv/csv.dart';
 import 'package:darkruby/model/note.dart';
+import 'package:darkruby/types.dart';
 import 'package:path/path.dart';
 import 'package:archive/archive.dart';
 import 'package:path_provider/path_provider.dart';
 
-Future<void> exportNotesCsvZip() async {
+Future<void> exportNotesCsvZip(List<AnyMap> list) async {
   try {
-    final dados = [
-      ['id', 'title', 'date', 'text'],
-      [1, 'Novo 1', '01/01/2026', 'zzzzzzzzzzz'],
-      [2, 'Novo 2', '02/01/2026', 'wwwwwwwwwww'],
-      [3, 'Novo 3', '03/01/2026', 'xxxxxxxxxxx'],
-    ];
+    final keys = list.first.keys.toList();
+    final values = list.map((e) => e.values.toList());
+    final dados = [keys, ...values];
 
     final csvString = csv.encode(dados);
     final csvBytes = utf8.encode(csvString);

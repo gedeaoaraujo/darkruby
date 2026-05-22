@@ -20,7 +20,8 @@ class NoteDao extends Dao {
   }
 
   Future<void> exportNotes() async {
-    await exportNotesCsvZip();
+    final notes = await super.getAll();
+    await exportNotesCsvZip(notes);
   }
 
   Future<void> importNotes() async {
