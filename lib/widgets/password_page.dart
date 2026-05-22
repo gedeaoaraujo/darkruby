@@ -65,6 +65,7 @@ class _PasswordPageState extends State<PasswordPage> {
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.red.shade900,
       body: Padding(
         padding: const EdgeInsets.all(32.0),
