@@ -106,7 +106,7 @@ class _NotePageState extends State<NotePage> {
                 )
               )),
             TextField(
-              readOnly: state.readOnly,
+              readOnly: true,
               controller: dateController,
               decoration: .new(
                 border: .none,

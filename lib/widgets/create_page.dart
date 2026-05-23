@@ -76,7 +76,7 @@ class _CreatePageState extends State<CreatePage> {
                 hintText: 'Digite um título...',
               )),
             TextField(
-              readOnly: false,
+              readOnly: true,
               controller: dateController,
               decoration: .new(
                 border: .none,
