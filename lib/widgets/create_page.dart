@@ -1,7 +1,7 @@
+import 'package:darkruby/extensions.dart';
 import 'package:darkruby/notes_viewmodel.dart';
 import 'package:darkruby/note_intent.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class CreatePage extends StatefulWidget {
   final MainViewmodel viewModel;
@@ -20,9 +20,9 @@ class _CreatePageState extends State<CreatePage> {
   @override
   void initState() {
     super.initState();
-    final fmt = DateFormat('dd/MM/yyyy kk:mm');
-    final date = fmt.format(DateTime.now());
-    dateController.text = date;
+    final state = widget.viewModel.state;
+    final date = state.newNote!.date;
+    dateController.text = date.toPtBrDateTime();
   }
 
   @override
