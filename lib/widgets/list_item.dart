@@ -1,3 +1,4 @@
+import 'package:darkruby/extensions.dart';
 import 'package:darkruby/model/note.dart';
 import 'package:flutter/material.dart';
 
@@ -45,7 +46,7 @@ class ListItem extends StatelessWidget {
                 children: [
                   Icon(Icons.access_time_filled),
                   Text(
-                    note.date, 
+                    note.date.toPtBrDateTime(), 
                     style: .new(color: scheme.onSecondary),
                   ),
                 ],
