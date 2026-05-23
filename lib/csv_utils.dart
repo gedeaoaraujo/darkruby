@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:convert';
 import 'package:csv/csv.dart';
@@ -37,7 +38,7 @@ Future<void> exportNotesCsvZip(List<AnyMap> list) async {
   }
 }
 
-Future<void> importNoteCsvZip(String path) async {
+Future<List<Note>> importNoteCsvZip(String path) async {
   try {
     final zipFile = File(path);
     final zipBytes = await zipFile.readAsBytes();
@@ -62,9 +63,9 @@ Future<void> importNoteCsvZip(String path) async {
       .expand((notes) => notes)
       .nonNulls.toList();
 
-    print(notes);
+    return notes;
   } catch (error) {
-    print(error);
+    return Future.error(error);
   }
     
 }
