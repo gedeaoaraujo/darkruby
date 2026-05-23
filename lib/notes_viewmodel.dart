@@ -20,7 +20,8 @@ class MainViewmodel extends ChangeNotifier {
       case ToggleReadOnly(:final readOnly):
         _state = state.copyWith(readOnly: readOnly ?? !state.readOnly);
       case CreateNote():
-        _state = state.copyWith(newNote: Note());
+        final date = DateTime.now().toIso8601String();
+        _state = state.copyWith(newNote: Note(date: date));
       case UpdateNote(:final title, :final date, :final text):
         final newNote = state.newNote?.copyWith(
           title: title, date: date, text: text
