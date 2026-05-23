@@ -28,6 +28,10 @@ class _SettingsPageState extends State<SettingsPage> {
     widget.viewModel.onAction(ImportNotes(path));
   }
 
+  void deleteNotes() async {
+    await widget.viewModel.deleteNotes();
+  }
+
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
@@ -150,6 +154,22 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               child: Text(
                 'Import Notes',
+                style: .new(
+                  fontSize: 16,
+                  color: scheme.onSurface,
+                  fontWeight: .normal,
+                )
+              ),
+            ),
+            TextButton(
+              onPressed: () => deleteNotes(),
+              style: TextButton.styleFrom(
+                padding: EdgeInsetsGeometry.all(8),
+                backgroundColor: scheme.primary.withAlpha(50),
+                shape: RoundedRectangleBorder(borderRadius: .circular(8))
+              ),
+              child: Text(
+                'Delete Notes',
                 style: .new(
                   fontSize: 16,
                   color: scheme.onSurface,

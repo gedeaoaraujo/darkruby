@@ -41,4 +41,8 @@ abstract class Dao {
     );
   }
 
+  Future<void> deleteAll() async {
+    await SqlDatabase.database.delete(tableName);
+  }
+
 }

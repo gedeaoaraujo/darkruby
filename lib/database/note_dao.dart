@@ -30,4 +30,8 @@ class NoteDao extends Dao {
     await upsertList(list);
   }
 
+  Future<void> deleteNotes() async {
+    await super.deleteAll();
+  }
+
 }

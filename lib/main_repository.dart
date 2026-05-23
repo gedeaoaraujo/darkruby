@@ -41,4 +41,8 @@ class MainRepository {
   Future<void> importNotes(String path) async {
     await _noteDao.importNotes(path);
   }
+
+  Future<void> deleteNotes() async {
+    await _noteDao.deleteNotes();
+  }
 }

@@ -58,9 +58,15 @@ class MainViewmodel extends ChangeNotifier {
         return;
       case ImportNotes(:final path):
         await _repository.importNotes(path);
+        onAction(LoadNotes());
         return;
     }
     notifyListeners();
+  }
+
+  Future<void> deleteNotes() async {
+    await _repository.deleteNotes();
+    onAction(LoadNotes());
   }
 
 }
