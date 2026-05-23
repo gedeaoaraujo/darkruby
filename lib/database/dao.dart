@@ -11,6 +11,17 @@ abstract class Dao {
       conflictAlgorithm: .replace
     );
   }
+  
+  Future<void> upsertList(List<AnyMap> entities) async {
+    final batch = SqlDatabase.database.batch();
+    for (var entity in entities) {
+      batch.insert(
+        tableName, entity,
+        conflictAlgorithm: .replace
+      );
+    }
+    batch.commit(noResult: true);
+  }
 
   Future<AnyMap?> getById(AnyMap entity) async {
     final maps = await SqlDatabase.database.query(

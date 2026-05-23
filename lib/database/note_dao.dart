@@ -25,7 +25,9 @@ class NoteDao extends Dao {
   }
 
   Future<void> importNotes(String path) async {
-    await importNoteCsvZip(path);
+    final notes = await importNoteCsvZip(path);
+    final list = notes.map((e) => e.toMap()).toList();
+    await upsertList(list);
   }
 
 }
