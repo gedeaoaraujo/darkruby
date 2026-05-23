@@ -1,5 +1,6 @@
 import 'package:darkruby/csv_utils.dart';
 import 'package:darkruby/database/dao.dart';
+import 'package:darkruby/database/sql_database.dart';
 import 'package:darkruby/mappers.dart';
 import 'package:darkruby/model/note.dart';
 
@@ -9,8 +10,10 @@ class NoteDao extends Dao {
   String get tableName => 'Notes';
 
   Future<List<Note>> getAllNotes() async {
-    final notes = await super.getAll();
-    return notes.map((e) => e.toNote()).toList();
+    final notes = await SqlDatabase.database.rawQuery(
+      'SELECT * FROM $tableName ORDER BY date DESC'
+    );
+    return notes.map((note) => note.toNote()).toList();
   }
 
   Future<Note?> getNoteById(int id) async {
@@ -20,8 +23,9 @@ class NoteDao extends Dao {
   }
 
   Future<void> exportNotes() async {
-    final notes = await super.getAll();
-    await exportNotesCsvZip(notes);
+    final notes = await getAllNotes();
+    final mapped = notes.map((e) => e.toMap());
+    await exportNotesCsvZip(mapped.toList());
   }
 
   Future<void> importNotes(String path) async {
