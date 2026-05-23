@@ -25,8 +25,9 @@ class _NotePageState extends State<NotePage> {
   @override
   void initState() {
     final note = widget.viewModel.state.newNote;
+    final date = note?.date.toPtBrDateTime();
     titleController = .new(text: note?.title ?? '');
-    dateController = .new(text: note?.date ?? '');
+    dateController = .new(text: date ?? '');
     textController = .new(text: note?.text ?? '');
     super.initState();
   }
