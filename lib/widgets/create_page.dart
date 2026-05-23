@@ -48,7 +48,6 @@ class _CreatePageState extends State<CreatePage> {
             onPressed: (){
               widget.viewModel.onAction(UpdateNote(
                 title: titleController.text,
-                date: dateController.text,
                 text: textController.text
               ));
               widget.viewModel.onAction(SaveNote());

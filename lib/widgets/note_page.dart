@@ -144,7 +144,6 @@ class _NotePageState extends State<NotePage> {
           onPressed: (){
             widget.viewModel.onAction(UpdateNote(
               title: titleController.text,
-              date: dateController.text,
               text: textController.text
             ));
             widget.viewModel.onAction(SaveNote());
