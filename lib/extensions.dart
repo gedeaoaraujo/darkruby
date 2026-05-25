@@ -10,4 +10,22 @@ extension StrExtensions on String {
     final date = DateTime.parse(this);
     return fmt.format(date);
   }
+
+  String get toHour {
+    final dt = DateTime.parse(this);
+    final fmt = DateFormat('kk:mm');
+    return fmt.format(dt);
+  }
+
+  String get toDay {
+    final dt = DateTime.parse(this);
+    final fmt = DateFormat('dd, MMMM');
+    return fmt.format(dt);
+  }
+
+  String get toYear {
+    final dt = DateTime.parse(this);
+    final fmt = DateFormat('yyyy, EEEE');
+    return fmt.format(dt);
+  }
 }
