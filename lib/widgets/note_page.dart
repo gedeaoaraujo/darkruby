@@ -99,7 +99,7 @@ class _NotePageState extends State<NotePage> {
               controller: titleController,
               decoration: .new(
                 border: .none,
-                labelText: 'Título',
+                labelText: 'Title',
                 labelStyle: .new(
                   color: scheme.primary,
                   fontWeight: .w600,
@@ -111,7 +111,7 @@ class _NotePageState extends State<NotePage> {
               controller: dateController,
               decoration: .new(
                 border: .none,
-                labelText: 'Data',
+                labelText: 'Date',
                 labelStyle: .new(
                   color: scheme.primary, 
                   fontWeight: .w600,
@@ -126,7 +126,7 @@ class _NotePageState extends State<NotePage> {
                 controller: textController,
                 decoration: .new(
                   border: .none,
-                  labelText: 'Texto',
+                  labelText: 'Text',
                   labelStyle: .new(
                     color: scheme.primary,
                     fontWeight: .w600,

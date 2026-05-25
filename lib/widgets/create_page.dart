@@ -65,7 +65,7 @@ class _CreatePageState extends State<CreatePage> {
               controller: titleController,
               decoration: .new(
                 border: .none,
-                labelText: 'Título',
+                labelText: 'Title',
                 floatingLabelBehavior: .always,
                 labelStyle: .new(
                   color: scheme.primary, 
@@ -73,21 +73,21 @@ class _CreatePageState extends State<CreatePage> {
                   fontSize: 18,
 
                 ),
-                hintText: 'Digite um título...',
+                hintText: 'Type a title...',
               )),
             TextField(
               readOnly: true,
               controller: dateController,
               decoration: .new(
                 border: .none,
-                labelText: 'Data',
+                labelText: 'Date',
                 floatingLabelBehavior: .always,
                 labelStyle: .new(
                   color: scheme.primary, 
                   fontWeight: .w600,
                   fontSize: 18,
                 ),
-                hintText: 'Digite uma data...',
+                hintText: 'Type a date...',
               )
             ),
             Expanded(
@@ -97,14 +97,14 @@ class _CreatePageState extends State<CreatePage> {
                 controller: textController,
                 decoration: .new(
                   border: .none,
-                  labelText: 'Texto',
+                  labelText: 'Text',
                   floatingLabelBehavior: .always,
                   labelStyle: .new(
                     color: scheme.primary,
                     fontWeight: .w600,
                     fontSize: 18,
                   ),
-                  hintText: 'Digite um texto...',
+                  hintText: 'Type a text...',
                 )
               ),
             ),
