@@ -1,4 +1,5 @@
 import 'package:darkruby/extensions.dart';
+import 'package:darkruby/widgets/date_container.dart';
 import 'package:flutter/material.dart';
 import 'package:darkruby/note_intent.dart';
 import 'package:darkruby/notes_viewmodel.dart';
@@ -19,15 +20,17 @@ class NotePage extends StatefulWidget {
 class _NotePageState extends State<NotePage> {
   
   late final TextEditingController titleController;
-  late final TextEditingController dateController;
   late final TextEditingController textController;
+
+  String get getDate {
+    final note = widget.viewModel.state.newNote;
+    return note?.date ?? '';
+  }
 
   @override
   void initState() {
     final note = widget.viewModel.state.newNote;
-    final date = note?.date.toPtBrDateTime();
     titleController = .new(text: note?.title ?? '');
-    dateController = .new(text: date ?? '');
     textController = .new(text: note?.text ?? '');
     super.initState();
   }
@@ -35,14 +38,13 @@ class _NotePageState extends State<NotePage> {
   @override
   void dispose() {
     titleController.dispose();
-    dateController.dispose();
     textController.dispose();
     super.dispose();
   }
 
   String get bodyText {
     final title = titleController.text;
-    final date = dateController.text;
+    final date = getDate.toPtBrDateTime();
     final text = textController.text;
     return '$title\n''$date\n''$text';
   }
@@ -94,6 +96,7 @@ class _NotePageState extends State<NotePage> {
         padding: const .all(16.0),
         child: Column(
           children: [
+            DateContainer(getDate),
             TextField(
               readOnly: state.readOnly,
               controller: titleController,
@@ -106,19 +109,6 @@ class _NotePageState extends State<NotePage> {
                   fontSize: 18,
                 )
               )),
-            TextField(
-              readOnly: true,
-              controller: dateController,
-              decoration: .new(
-                border: .none,
-                labelText: 'Date',
-                labelStyle: .new(
-                  color: scheme.primary, 
-                  fontWeight: .w600,
-                  fontSize: 18,
-                )
-              )
-            ),
             Expanded(
               child: TextField(
                 maxLines: null,
