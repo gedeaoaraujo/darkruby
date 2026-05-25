@@ -1,6 +1,7 @@
 import 'package:darkruby/extensions.dart';
 import 'package:darkruby/notes_viewmodel.dart';
 import 'package:darkruby/note_intent.dart';
+import 'package:darkruby/widgets/date_container.dart';
 import 'package:flutter/material.dart';
 
 class CreatePage extends StatefulWidget {
@@ -14,21 +15,16 @@ class CreatePage extends StatefulWidget {
 class _CreatePageState extends State<CreatePage> {
 
   final TextEditingController titleController = .new();
-  final TextEditingController dateController = .new();
   final TextEditingController textController = .new();
 
-  @override
-  void initState() {
-    super.initState();
-    final state = widget.viewModel.state;
-    final date = state.newNote!.date;
-    dateController.text = date.toPtBrDateTime();
+  String get getDate {
+    final note = widget.viewModel.state.newNote;
+    return note?.date ?? '';
   }
 
   @override
   void dispose() {
     titleController.dispose();
-    dateController.dispose();
     textController.dispose();
     super.dispose();
   }
@@ -60,6 +56,7 @@ class _CreatePageState extends State<CreatePage> {
         padding: const .all(16.0),
         child: Column(
           children: [
+            DateContainer(getDate),
             TextField(
               readOnly: false,
               controller: titleController,
@@ -75,21 +72,6 @@ class _CreatePageState extends State<CreatePage> {
                 ),
                 hintText: 'Type a title...',
               )),
-            TextField(
-              readOnly: true,
-              controller: dateController,
-              decoration: .new(
-                border: .none,
-                labelText: 'Date',
-                floatingLabelBehavior: .always,
-                labelStyle: .new(
-                  color: scheme.primary, 
-                  fontWeight: .w600,
-                  fontSize: 18,
-                ),
-                hintText: 'Type a date...',
-              )
-            ),
             Expanded(
               child: TextField(
                 maxLines: null,
