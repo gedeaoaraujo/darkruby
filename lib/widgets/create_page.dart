@@ -55,7 +55,7 @@ class _CreatePageState extends State<CreatePage> {
         padding: const .all(16.0),
         child: Column(
           children: [
-            DateContainer(getDate),
+            DateContainer(getDate, false),
             TextField(
               readOnly: false,
               controller: titleController,

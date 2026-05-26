@@ -96,7 +96,7 @@ class _NotePageState extends State<NotePage> {
         padding: const .all(16.0),
         child: Column(
           children: [
-            DateContainer(getDate),
+            DateContainer(getDate, state.readOnly),
             TextField(
               readOnly: state.readOnly,
               controller: titleController,

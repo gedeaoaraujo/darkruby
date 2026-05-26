@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 
 class DateContainer extends StatelessWidget {
   final String date;
-  const DateContainer(this.date, {super.key});
+  final bool readOnly;
+  const DateContainer(
+    this.date, this.readOnly, {super.key}
+  );
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
     final width = MediaQuery.sizeOf(context).width;
     return Container(
@@ -17,10 +21,12 @@ class DateContainer extends StatelessWidget {
           SizedBox(
             width: width * 0.5,
             child: ElevatedButton(
-              onPressed: (){},
+              onPressed: readOnly ? null : (){},
               style: ElevatedButton.styleFrom(
                 elevation: 0,
                 alignment: .centerStart,
+                disabledForegroundColor: scheme.primary,
+                disabledBackgroundColor: Colors.transparent,
                 padding: EdgeInsetsGeometry.symmetric(
                   horizontal: 4 ,vertical: 8
                 ),
@@ -49,10 +55,12 @@ class DateContainer extends StatelessWidget {
           SizedBox(
             width: width * 0.25,
             child: ElevatedButton(
-              onPressed: (){},
+              onPressed: readOnly ? null : (){},
               style: ElevatedButton.styleFrom(
                 elevation: 0,
                 alignment: .center,
+                disabledForegroundColor: scheme.primary,
+                disabledBackgroundColor: Colors.transparent,
                 padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
                 shape: RoundedRectangleBorder(borderRadius: .circular(8))
               ),
