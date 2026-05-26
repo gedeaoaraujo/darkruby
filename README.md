@@ -1,17 +1,9 @@
 # Dark Ruby
 
-A new Flutter project.
+## Resumo
 
-## Getting Started
+Um aplicativo de notas diárias.
 
-This project is a starting point for a Flutter application.
+## Screenshots
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="https://github.com/gedeaoaraujo/darkruby/blob/main/img1.png" alt="Home" width="400"/> <img src="https://github.com/gedeaoaraujo/darkruby/blob/main/img2.png" alt="Page 1" width="400"/> <img src="https://github.com/gedeaoaraujo/darkruby/blob/main/img3.png" alt="Page 3" width="400"/> <img src="https://github.com/gedeaoaraujo/darkruby/blob/main/img4.png" alt="Page 4" width="400"/>
