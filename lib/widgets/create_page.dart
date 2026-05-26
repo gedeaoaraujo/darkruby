@@ -1,4 +1,3 @@
-import 'package:darkruby/extensions.dart';
 import 'package:darkruby/notes_viewmodel.dart';
 import 'package:darkruby/note_intent.dart';
 import 'package:darkruby/widgets/date_container.dart';
