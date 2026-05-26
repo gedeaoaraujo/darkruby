@@ -74,12 +74,15 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final notes = filteredNotes;
     final scheme = Theme.of(context).colorScheme;
+    final txtTheme = TextTheme.of(context);
     return Scaffold(
       backgroundColor: scheme.secondaryContainer,
       appBar: AppBar(
         foregroundColor: scheme.onPrimary,
         backgroundColor: scheme.primary,
-        title: Text(widget.title),
+        title: Text(widget.title, style: .new(
+          fontSize: txtTheme.titleLarge?.fontSize
+        )),
         actions: [
           IconButton(
             icon: switch(widget.viewModel.state.theme){

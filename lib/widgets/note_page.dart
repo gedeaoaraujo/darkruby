@@ -52,12 +52,12 @@ class _NotePageState extends State<NotePage> {
   @override
   Widget build(BuildContext context) {
     final state = widget.viewModel.state;
-    final scheme = Theme.of(context).colorScheme;
+    final scheme = Theme.of(context);
     return Scaffold(
-      backgroundColor: scheme.secondaryContainer,
+      backgroundColor: scheme.colorScheme.secondaryContainer,
       appBar: AppBar(
-        foregroundColor: scheme.onPrimary,
-        backgroundColor: scheme.primary,
+        foregroundColor: scheme.colorScheme.onPrimary,
+        backgroundColor: scheme.colorScheme.primary,
         title: switch(state.readOnly){
           true => Text('View Note'),
           false => Text('Edit Note'),
@@ -104,11 +104,13 @@ class _NotePageState extends State<NotePage> {
                 border: .none,
                 labelText: 'Title',
                 labelStyle: .new(
-                  color: scheme.primary,
                   fontWeight: .w600,
-                  fontSize: 18,
+                  color: scheme.colorScheme.primary,
+                  fontSize: scheme.textTheme.bodyLarge?.fontSize,
                 )
-              )),
+              ),
+              style: .new(fontSize: scheme.textTheme.bodyMedium?.fontSize)
+            ),
             TextField(
               maxLines: null,
               readOnly: state.readOnly,
@@ -117,11 +119,12 @@ class _NotePageState extends State<NotePage> {
                 border: .none,
                 labelText: 'Text',
                 labelStyle: .new(
-                  color: scheme.primary,
                   fontWeight: .w600,
-                  fontSize: 18,
+                  color: scheme.colorScheme.primary,
+                  fontSize: scheme.textTheme.bodyLarge?.fontSize,
                 )
-              )
+              ),
+              style: .new(fontSize: scheme.textTheme.bodyMedium?.fontSize)
             ),
           ],
         ),
@@ -138,8 +141,8 @@ class _NotePageState extends State<NotePage> {
             widget.viewModel.onAction(SaveNote());
             widget.viewModel.onAction(ToggleReadOnly());
           },
-          backgroundColor: scheme.primary,
-          child: Icon(Icons.check, color: scheme.onPrimary)
+          backgroundColor: scheme.colorScheme.primary,
+          child: Icon(Icons.check, color: scheme.colorScheme.onPrimary)
         )
       )
     );

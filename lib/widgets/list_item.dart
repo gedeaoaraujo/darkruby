@@ -14,6 +14,7 @@ class ListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final txt = TextTheme.of(context);
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         padding: EdgeInsetsGeometry.all(8),
@@ -37,7 +38,7 @@ class ListItem extends StatelessWidget {
                   Text(
                     note.title, 
                     textAlign: .start,
-                    style: .new(fontSize: 16),
+                    style: .new(fontSize: txt.bodyMedium?.fontSize),
                   ),
                 ],
               ),
@@ -47,7 +48,10 @@ class ListItem extends StatelessWidget {
                   Icon(Icons.access_time_filled),
                   Text(
                     note.date.toPtBrDateTime(), 
-                    style: .new(color: scheme.onSecondary),
+                    style: .new(
+                      color: scheme.onSecondary,
+                      fontSize: txt.bodySmall?.fontSize
+                    ),
                   ),
                 ],
               ),
@@ -56,7 +60,10 @@ class ListItem extends StatelessWidget {
                   note.text,
                   maxLines: 3,
                   overflow: .ellipsis,
-                  style: .new(color: scheme.onSecondary),
+                  style: .new(
+                    color: scheme.onSecondary,
+                    fontSize: txt.bodySmall?.fontSize
+                  ),
                 )
               ]),
             ],

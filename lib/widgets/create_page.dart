@@ -30,12 +30,12 @@ class _CreatePageState extends State<CreatePage> {
 
   @override
   Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
+    final scheme = Theme.of(context);
     return Scaffold(
-      backgroundColor: scheme.secondaryContainer,
+      backgroundColor: scheme.colorScheme.secondaryContainer,
       appBar: AppBar(
-        foregroundColor: scheme.onPrimary,
-        backgroundColor: scheme.primary,
+        foregroundColor: scheme.colorScheme.onPrimary,
+        backgroundColor: scheme.colorScheme.primary,
         title: Text('Create Note'),
         actions: [
           IconButton(
@@ -64,12 +64,13 @@ class _CreatePageState extends State<CreatePage> {
                 labelText: 'Title',
                 floatingLabelBehavior: .always,
                 labelStyle: .new(
-                  color: scheme.primary, 
                   fontWeight: .w600,
-                  fontSize: 18,
-
+                  color: scheme.colorScheme.primary, 
+                  fontSize: scheme.textTheme.titleLarge?.fontSize,
                 ),
                 hintText: 'Type a title...',
+              ), style: .new(
+                fontSize: scheme.textTheme.bodyMedium?.fontSize
               )),
             Expanded(
               child: TextField(
@@ -81,11 +82,14 @@ class _CreatePageState extends State<CreatePage> {
                   labelText: 'Text',
                   floatingLabelBehavior: .always,
                   labelStyle: .new(
-                    color: scheme.primary,
                     fontWeight: .w600,
-                    fontSize: 18,
+                    color: scheme.colorScheme.primary,
+                    fontSize: scheme.textTheme.titleLarge?.fontSize,
                   ),
                   hintText: 'Type a text...',
+                ),
+                style: .new(
+                  fontSize: scheme.textTheme.bodyMedium?.fontSize
                 )
               ),
             ),

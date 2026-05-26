@@ -86,7 +86,7 @@ class _DateContainerState extends State<DateContainer> {
                         fontSize: textTheme.titleMedium?.fontSize
                       )),
                       Text(widget.date.toYear, style: .new(
-                        fontSize: textTheme.titleMedium?.fontSize
+                        fontSize: textTheme.titleSmall?.fontSize
                       ))
                     ],
                   ),
