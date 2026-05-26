@@ -1,7 +1,5 @@
 # Dark Ruby
 
-## Resumo
-
 Um aplicativo de notas diárias.
 
 ## Screenshots
