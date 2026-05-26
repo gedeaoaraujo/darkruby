@@ -92,7 +92,7 @@ class _NotePageState extends State<NotePage> {
           )
         ],
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const .all(16.0),
         child: Column(
           children: [
@@ -109,21 +109,19 @@ class _NotePageState extends State<NotePage> {
                   fontSize: 18,
                 )
               )),
-            Expanded(
-              child: TextField(
-                maxLines: null,
-                readOnly: state.readOnly,
-                controller: textController,
-                decoration: .new(
-                  border: .none,
-                  labelText: 'Text',
-                  labelStyle: .new(
-                    color: scheme.primary,
-                    fontWeight: .w600,
-                    fontSize: 18,
-                  )
+            TextField(
+              maxLines: null,
+              readOnly: state.readOnly,
+              controller: textController,
+              decoration: .new(
+                border: .none,
+                labelText: 'Text',
+                labelStyle: .new(
+                  color: scheme.primary,
+                  fontWeight: .w600,
+                  fontSize: 18,
                 )
-              ),
+              )
             ),
           ],
         ),
