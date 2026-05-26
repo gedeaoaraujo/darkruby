@@ -6,8 +6,16 @@ const String _appName = 'Dark Ruby';
 
 class App extends StatelessWidget {
   App({super.key});
-  
   final viewModel = MainViewmodel();
+
+  TextTheme textTheme() => .new(
+    titleLarge: .new(fontSize: 22),
+    titleMedium: .new(fontSize: 18),
+    titleSmall: .new(fontSize: 16),
+    bodyLarge: .new(fontSize: 18),
+    bodyMedium: .new(fontSize: 16),
+    bodySmall: .new(fontSize: 14)
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +35,7 @@ class App extends StatelessWidget {
               primaryContainer: Colors.white70,
               secondaryContainer: Colors.white
             ),
+            textTheme: textTheme(),
             visualDensity: .adaptivePlatformDensity
           ),
           darkTheme: .new(
@@ -38,14 +47,7 @@ class App extends StatelessWidget {
               primaryContainer: const Color.fromARGB(255, 25, 25, 25),
               secondaryContainer: const Color.fromARGB(255, 20, 20, 20)
             ),
-            textTheme: .new(
-              titleLarge: .new(fontSize: 22),
-              titleMedium: .new(fontSize: 18),
-              titleSmall: .new(fontSize: 16),
-              bodyLarge: .new(fontSize: 18),
-              bodyMedium: .new(fontSize: 16),
-              bodySmall: .new(fontSize: 14),
-            ),
+            textTheme: textTheme(),
             visualDensity: .adaptivePlatformDensity
           ),
           themeMode: viewModel.state.theme,
