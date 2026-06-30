@@ -1,6 +1,7 @@
 import 'package:darkruby/csv_utils.dart';
 import 'package:darkruby/note_intent.dart';
 import 'package:darkruby/notes_viewmodel.dart';
+import 'package:darkruby/widgets/message_dialog.dart';
 import 'package:darkruby/widgets/password_dialog.dart';
 import 'package:flutter/material.dart';
 
@@ -39,16 +40,7 @@ class _SettingsPageState extends State<SettingsPage> {
       final message = widget.viewModel.state.message ?? '';
       if (message.isEmpty) return;
       showDialog(context: context, builder: (context) { 
-        return AlertDialog(
-          title: const Text('Message'),
-          content: Text(message),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context), 
-              child: const Text('Ok')
-            ),
-          ],
-        );
+        return MessageDialog(message: message);
       });
     });
   }
