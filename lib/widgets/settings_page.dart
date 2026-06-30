@@ -33,6 +33,27 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    widget.viewModel.addListener((){
+      final message = widget.viewModel.state.message ?? '';
+      if (message.isEmpty) return;
+      showDialog(context: context, builder: (context) { 
+        return AlertDialog(
+          title: const Text('Message'),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context), 
+              child: const Text('Ok')
+            ),
+          ],
+        );
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
     return Scaffold(

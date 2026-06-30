@@ -6,11 +6,13 @@ class MainState {
   final Note? newNote;
   final bool readOnly;
   final bool password;
+  final String? message;
   final ThemeMode theme;
   final List<Note> notes;
   
   MainState({
     this.newNote,
+    this.message,
     this.password = false,
     this.search = false,
     this.readOnly = true,
@@ -23,6 +25,7 @@ class MainState {
     Note? newNote,
     bool? readOnly,
     bool? password,
+    String? message,
     ThemeMode? theme,
     List<Note>? notes,
   }) => MainState(
@@ -30,6 +33,7 @@ class MainState {
     notes: notes ?? this.notes,
     search: search ?? this.search,
     newNote: newNote ?? this.newNote,
+    message: message ?? this.message,
     password: password ?? this.password,
     readOnly: readOnly ?? this.readOnly,
   );

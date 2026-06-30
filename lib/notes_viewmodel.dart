@@ -55,11 +55,12 @@ class MainViewmodel extends ChangeNotifier {
         await _repository.updatePassword(password);
         return;
       case ExportNotes():
-        await _repository.exportNotes();
-        return;
+        final fileName = await _repository.exportNotes();
+        _state = _state.copyWith(message: 'File $fileName exported successfully');
       case ImportNotes(:final path):
         await _repository.importNotes(path);
         onAction(LoadNotes());
+        _state = _state.copyWith(message: 'Notes imported successfully');
         return;
     }
     notifyListeners();

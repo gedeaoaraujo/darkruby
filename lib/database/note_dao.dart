@@ -22,10 +22,10 @@ class NoteDao extends Dao {
     return result?.toNote();
   }
 
-  Future<void> exportNotes() async {
+  Future<String> exportNotes() async {
     final notes = await getAllNotes();
     final mapped = notes.map((e) => e.toMap());
-    await exportNotesCsvZip(mapped.toList());
+    return await exportNotesCsvZip(mapped.toList());
   }
 
   Future<void> importNotes(String path) async {

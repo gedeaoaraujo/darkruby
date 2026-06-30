@@ -9,7 +9,7 @@ import 'package:archive/archive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:file_picker/file_picker.dart';
 
-Future<void> exportNotesCsvZip(List<AnyMap> list) async {
+FutureOr<String> exportNotesCsvZip(List<AnyMap> list) async {
   try {
     final keys = list.first.keys.toList();
     final values = list.map((e) => e.values.toList());
@@ -19,9 +19,9 @@ Future<void> exportNotesCsvZip(List<AnyMap> list) async {
     final csvBytes = utf8.encode(csvString);
 
     final archive = Archive();
-    // final date = DateTime.now();
-    // final dateStr = date.toIso8601String();
-    final fileName = 'notes-123456';
+    final date = DateTime.now();
+    final dateStr = date.toIso8601String();
+    final fileName = 'DakRuby-$dateStr';
 
     archive.addFile(ArchiveFile(
       '$fileName.csv', csvBytes.length, csvBytes
@@ -33,8 +33,9 @@ Future<void> exportNotesCsvZip(List<AnyMap> list) async {
     final zipBytes = ZipEncoder().encode(archive);
     final zipFile = File(path);
     await zipFile.writeAsBytes(zipBytes);
+    return fileName;
   } catch (error) {
-    print(error);
+    return error.toString();
   }
 }
 

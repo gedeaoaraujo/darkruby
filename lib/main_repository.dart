@@ -34,8 +34,8 @@ class MainRepository {
     });
   }
 
-  Future<void> exportNotes() async {
-    await _noteDao.exportNotes();
+  Future<String> exportNotes() async {
+    return await _noteDao.exportNotes();
   }
 
   Future<void> importNotes(String path) async {
