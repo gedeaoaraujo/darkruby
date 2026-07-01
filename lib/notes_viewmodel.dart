@@ -68,7 +68,12 @@ class MainViewmodel extends ChangeNotifier {
 
   Future<void> deleteNotes() async {
     await _repository.deleteNotes();
-    onAction(LoadNotes());
+    final notes = await _repository.getAllNotes();
+    _state = state.copyWith(
+      notes: notes, 
+      message: 'All notes deleted successfully'
+    );
+    notifyListeners();
   }
 
 }
