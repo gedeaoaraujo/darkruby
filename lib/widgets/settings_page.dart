@@ -1,6 +1,7 @@
 import 'package:darkruby/csv_utils.dart';
 import 'package:darkruby/note_intent.dart';
 import 'package:darkruby/notes_viewmodel.dart';
+import 'package:darkruby/widgets/confirm_dialog.dart';
 import 'package:darkruby/widgets/message_dialog.dart';
 import 'package:darkruby/widgets/password_dialog.dart';
 import 'package:flutter/material.dart';
@@ -24,13 +25,29 @@ class _SettingsPageState extends State<SettingsPage> {
   );
 
   void importNotes() async {
-    final path = await selectFile();
-    if (path.isEmpty) return;
-    widget.viewModel.onAction(ImportNotes(path));
+    showDialog(context: context, builder: (context) {
+      return ConfirmDialog(
+        widget: widget,
+        message: 'You really want to import notes?',
+        onOkPress: () async {
+          final path = await selectFile();
+          if (path.isEmpty) return;
+          widget.viewModel.onAction(ImportNotes(path));
+        }
+      ); 
+    });
   }
 
   void deleteNotes() async {
-    await widget.viewModel.deleteNotes();
+    showDialog(context: context, builder: (context) {
+      return ConfirmDialog(
+        widget: widget,
+        message: 'You really want to delete all notes?',
+        onOkPress: () async {
+          await widget.viewModel.deleteNotes();
+        }
+      ); 
+    });
   }
 
   @override
@@ -142,7 +159,13 @@ class _SettingsPageState extends State<SettingsPage> {
             )),
             TextButton(
               onPressed: () {
-                widget.viewModel.onAction(ExportNotes());
+                showDialog(context: context, builder: (context) {
+                 return ConfirmDialog(
+                    widget: widget,
+                    message: 'You really want to export notes?',
+                    onOkPress: () => widget.viewModel.onAction(ExportNotes()),
+                  ); 
+                });
               },
               style: TextButton.styleFrom(
                 padding: EdgeInsetsGeometry.all(8),
