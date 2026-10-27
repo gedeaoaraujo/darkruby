@@ -3,7 +3,7 @@
     <application
         android:label="darkruby"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@drawable/dark_diamond_24px">
         <activity
             android:name=".MainActivity"
             android:exported="true"
